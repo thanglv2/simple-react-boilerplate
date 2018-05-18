@@ -34,9 +34,14 @@ module.exports = {
     "indent": [
       2,
       2,
+      {
+        "SwitchCase": 1
+      }
     ],
+    "import/first": 0,
     "import/no-unresolved": 2,
     "import/prefer-default-export": 0,
+    "import/extensions": 0,
     "jsx-a11y/aria-props": 2,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/heading-has-content": 0,
@@ -45,6 +50,7 @@ module.exports = {
     "jsx-a11y/role-supports-aria-props": 2,
     "react/jsx-filename-extension": 0,
     "react/require-extension": 0,
+    "react/require-default-props": 0,
     "react/prefer-stateless-function": [
       0, {
         "ignorePureComponents": true
@@ -52,4 +58,11 @@ module.exports = {
     ],
     "semi": 0,
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/webpack.config.js"
+      }
+    }
+  }
 }

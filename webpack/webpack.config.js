@@ -1,8 +1,8 @@
-const path = require('path');
+const path = require('path')
 
-const parentDir = path.join(__dirname, '../');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const parentDir = path.join(__dirname, '../')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   entry: [
@@ -23,6 +23,12 @@ module.exports = {
           loader: 'html-loader',
         },
       },
+      {
+        // Preprocess 3rd party .css files located in node_modules
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   output: {
@@ -34,6 +40,12 @@ module.exports = {
     historyApiFallback: true,
     port: 9000,
     hot: true,
+  },
+  resolve: {
+    modules: ['app', 'node_modules'],
+    extensions: [
+      '.js',
+    ],
   },
   plugins: [
     // Minify and optimize the index.html
