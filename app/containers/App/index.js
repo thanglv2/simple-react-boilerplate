@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Input from 'components/Input'
 import { setUsername } from './actions'
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     const { username, onChangeUsername } = this.props
     return (
@@ -31,7 +31,7 @@ const mapStateToProps = ({ global }) => ({
   username: global.username,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   onChangeUsername: (value) => dispatch(setUsername(value)),
 })
 

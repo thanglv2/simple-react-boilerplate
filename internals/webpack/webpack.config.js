@@ -6,7 +6,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: [
-    path.join(parentDir, 'app/app.js'),
+    path.join(process.cwd(), 'app/app.js'),
   ],
   module: {
     rules: [

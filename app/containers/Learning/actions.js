@@ -4,5 +4,5 @@ export function setKeyword(keyword) {
   return {
     type: SET_KEYWORD,
     keyword,
-  };
+  }
 }

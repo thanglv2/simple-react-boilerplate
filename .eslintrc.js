@@ -57,11 +57,12 @@ module.exports = {
       }
     ],
     "semi": 0,
+    "array-callback-return": 0
   },
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "./webpack/webpack.config.js"
+        "config": "./internals/webpack/webpack.config.js"
       }
     }
   }

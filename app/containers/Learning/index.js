@@ -6,11 +6,11 @@ import Input from 'components/Input'
 import { setKeyword } from './actions'
 import { documents } from './constants'
 
-class Learning extends React.Component {
+export class Learning extends React.Component {
   renderLearningLink(keyword) {
-    return ['react', 'redux', 'react-router', 'webpack'].indexOf(keyword.toLowerCase()) > -1 && (
+    return ['react', 'redux', 'react-router', 'webpack'].indexOf(keyword) > -1 && (
       <div className="text-center mb-3">
-        <a href={documents[keyword.toLowerCase()]} target="_blank" >
+        <a href={documents[keyword]} target="_blank" >
           Read documents
         </a>
       </div>
@@ -29,7 +29,7 @@ class Learning extends React.Component {
         <div className="d-flex justify-content-center mb-3">
           <Input value={keyword} onChange={onChangeKeyword} />
         </div>
-        {this.renderLearningLink(keyword)}
+        {this.renderLearningLink(keyword.toLowerCase())}
         <div className="d-flex justify-content-center">
           <button>
             <Link to="/">Go Home</Link>
@@ -45,7 +45,7 @@ const mapStateToProps = ({ learning, global }) => ({
   username: global.username,
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   onChangeKeyword: (keyword) => dispatch(setKeyword(keyword)),
 })
 
