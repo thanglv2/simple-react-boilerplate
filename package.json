@@ -4,9 +4,10 @@
   "description": "react boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.config.js --mode=development",
-    "build": "webpack --config ./webpack/webpack.config.js --mode=production"
+    "test": "jest --coverage",
+    "start": "./node_modules/.bin/webpack-dev-server --config ./internals/webpack/webpack.config.js --mode=development",
+    "build": "webpack --config ./internals/webpack/webpack.config.js --mode=production",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "react",
@@ -15,11 +16,17 @@
   "author": "nguyen.van.thang@framgia.com",
   "license": "ISC",
   "dependencies": {
+    "babel-jest": "^23.0.1",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.1.1",
     "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-facebook-login": "^4.0.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
@@ -37,6 +44,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -54,5 +62,12 @@
       "react",
       "stage-0"
     ]
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "app"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/jest-config.js"
   }
 }

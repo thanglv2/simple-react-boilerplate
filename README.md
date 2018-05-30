@@ -32,7 +32,12 @@ Simple react boilerplate for newbie
 - [**React router v4**](https://reacttraining.com/react-router/web/guides/quick-start): Learn once, Route Anywhere
 
 ## Bootstrap v4
-- [**Bootstrap v4**](https://getbootstrap.com/docs/4.0/getting-started/introduction/): Get started with Bootstrap, the world’s most popular framework for building responsive, mobile-first sites, with BootstrapCDN and a template starter page.
+- [**Bootstrap v4**](https://getbootstrap.com/docs/4.0/getting-started/introduction/): The world’s most popular framework for building responsive, mobile-first sites, with BootstrapCDN and a template starter page.
+
+## Testing
+- [**Jest**](https://facebook.github.io/jest/docs/en/tutorial-react.html): a very fast test runner with helpful fail messages,
+it's has simple configuration, coverage report with a single command line switch also.
+- [**Enzyme**](http://airbnb.io/enzyme/docs/api/): Convenient utilities to work with shallow rendering, static rendered markup or DOM rendering. It's also has jQuery-like API to find elements, read props, etc.
 
 ## License
 This project is licensed under the MIT license, Copyright (c) 2017 Thang Nguyen.

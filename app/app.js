@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import AppRoutes from './routes'
+import App from '../app/containers/App'
 import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppRoutes />
+    <App />
   </Provider>,
   document.getElementById('app')
 )
