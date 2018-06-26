@@ -4,10 +4,12 @@
 
 import { combineReducers } from 'redux'
 
-import globalReducer from 'containers/App/reducer'
+import { movieList } from 'containers/Home/reducer'
 
-const reducer = combineReducers({
-  global: globalReducer,
-})
+const createReducer = asyncReducers =>
+  combineReducers({
+    movieList,
+    ...asyncReducers,
+  })
 
-export default reducer
+export default createReducer

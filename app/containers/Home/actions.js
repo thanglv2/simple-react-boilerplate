@@ -1,12 +1,14 @@
 import {
-  API_KEY,
-  URL_LIST,
-  URL_DETAIL,
-  FETCH_MOVIE,
+  FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
 } from './constants';
 
+export function fetchMovies() {
+  return {
+    type: FETCH_MOVIES,
+  };
+}
 export function fetchMoviesSuccess(data) {
   return {
     type: FETCH_MOVIES_SUCCESS,
