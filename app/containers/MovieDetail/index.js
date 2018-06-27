@@ -2,14 +2,12 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Row, Col, Image } from 'react-bootstrap';
-
 
 import { fetchMovie } from './actions';
 import withReducer from '../../../utils/withReducer';
 import movieDetail from './reducer';
+import Poster from '../../components/Poster';
 
-import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants';
 
 type Props = {
   movie: Object,
@@ -19,21 +17,19 @@ type Props = {
   }
 }
 
+
 class MovieDetail extends Component<Props> {
   componentDidMount() {
     this.props.fetchMovie(this.props.match.params.id);
   }
 
   render() {
+    const { movie } = this.props;
+    console.log(movie);
+
     return (
-      <div>{this.props.movie && this.props.movie.item && this.props.movie.item.poster_path &&
-        <Grid>
-          <Row>
-            <Col xs={12} sm={6} md={4}>
-              <Image src={URL_IMG + IMG_SIZE_LARGE + this.props.movie.item.poster_path} responsive />
-            </Col>
-          </Row>
-        </Grid>
+      <div>{movie && movie.item && movie.item.poster_path && <Poster movie={movie} />
+
       }
       </div>
     )
