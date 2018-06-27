@@ -8,7 +8,7 @@ export function* fetchMovies() {
   try {
     const response = yield call(fetchMovieList);
 
-    yield put(fetchMoviesSuccess(response.data));
+    yield put(fetchMoviesSuccess(response.data.results));
   } catch (err) {
     yield put(fetchMoviesFail(err));
   }

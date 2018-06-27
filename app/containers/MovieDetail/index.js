@@ -7,7 +7,7 @@ import { fetchMovie } from './actions';
 import withReducer from '../../../utils/withReducer';
 import movieDetail from './reducer';
 import Poster from '../../components/Poster';
-
+import SearchFilm from '../Search'
 
 type Props = {
   movie: Object,
@@ -25,12 +25,11 @@ class MovieDetail extends Component<Props> {
 
   render() {
     const { movie } = this.props;
-    console.log(movie);
 
     return (
-      <div>{movie && movie.item && movie.item.poster_path && <Poster movie={movie} />
-
-      }
+      <div>
+        <SearchFilm />
+        {movie && movie.item && movie.item.poster_path && <Poster movie={movie} />}
       </div>
     )
   }

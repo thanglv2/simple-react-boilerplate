@@ -10,6 +10,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route path="/movie/:id" component={MovieDetail} />
       <Route path="/login" component={Login} />
+      <Route path="/search/:searchText" component={Home} />
     </Switch>
   </BrowserRouter>
 );

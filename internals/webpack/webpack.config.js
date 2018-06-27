@@ -24,9 +24,19 @@ module.exports = {
         },
       },
       {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '/images/[name]_[hash:7].[ext]',
+            },
+          },
+        ],
+      },
+      {
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
-        include: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
     ],
