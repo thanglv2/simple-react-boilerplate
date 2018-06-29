@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Grid, Row, Col, Image } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants'
 import { StyledGrid, StyledImage } from '../../../utils/commonStyle'
 

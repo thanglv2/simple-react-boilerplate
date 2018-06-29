@@ -8,6 +8,7 @@ import { fetchMovies } from './actions';
 import LoadingFilm from '../../components/LoadingFilm';
 import MovieList from '../../components/MovieList';
 import SearchFilm from '../Search'
+import Pagination from '../Pagination'
 
 type Props = {
   fetchMovies: () => void,
@@ -16,6 +17,10 @@ type Props = {
   searchMovie: () => void,
 }
 class Home extends React.Component<Props> {
+  state = {
+    pageOfItems: [],
+  }
+
   componentDidMount() {
     if (!this.props.match.params.searchText) {
       this.props.fetchMovies();
@@ -30,14 +35,20 @@ class Home extends React.Component<Props> {
     }
   }
 
+  onChangePage = (pageOfItems) => {
+    this.setState({ pageOfItems });
+  }
+
   render() {
     const { items } = this.props.movies;
+    const { pageOfItems } = this.state;
 
     return (
       <div>
         <SearchFilm searchText="" />
         { items.length === 0 && <LoadingFilm /> }
-        { items.length > 0 && <MovieList movies={items} /> }
+        { items.length > 0 && <MovieList movies={pageOfItems} /> }
+        <Pagination items={items} onChangePage={this.onChangePage} />
       </div>
     )
   }
