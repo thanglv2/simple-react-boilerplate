@@ -9,6 +9,7 @@ import LoadingFilm from '../../components/LoadingFilm';
 import MovieList from '../../components/MovieList';
 import SearchFilm from '../Search'
 import Pagination from '../Pagination'
+import Sort from '../SortBy'
 
 type Props = {
   fetchMovies: () => void,
@@ -42,9 +43,27 @@ class Home extends React.Component<Props> {
   render() {
     const { items } = this.props.movies;
     const { pageOfItems } = this.state;
+    const listOption = [
+      {
+        id: 1,
+        name: 'Rating Ascending',
+      },
+      {
+        id: 2,
+        name: 'Rating Descending',
+      },
+      {
+        id: 3,
+        name: 'Release Date Ascending',
+      },
+      {
+        id: 4,
+        name: 'Release Date Descending',
+      }];
 
     return (
       <div>
+        <Sort listOption={listOption} />
         <SearchFilm searchText="" />
         { items.length === 0 && <LoadingFilm /> }
         { items.length > 0 && <MovieList movies={pageOfItems} /> }
