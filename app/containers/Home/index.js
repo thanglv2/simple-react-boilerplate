@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl'
 
 import { searchMovie } from '../Search/actions'
 import { filterFilm } from '../Filter/action'
-import { fetchMovies } from './actions';
+import { fetchMovies, localeSet } from './actions';
 import LoadingFilm from '../../components/LoadingFilm';
 import MovieList from '../../components/MovieList';
 import SearchFilm from '../Search'
@@ -20,6 +21,7 @@ type Props = {
   match: Object,
   searchMovie: () => void,
   filterFilm: () => void,
+  localeSet: () => void,
 }
 
 class Home extends React.Component<Props> {
@@ -60,7 +62,11 @@ class Home extends React.Component<Props> {
 
     return (
       <div>
+        <button onClick={() => this.props.localeSet('en')}>EN</button> |
+        <button onClick={() => this.props.localeSet('vi')}>VI</button>
+        <FormattedMessage id="filter_country" defaultMessage="Filter by country" />
         <Filter options={filterByCountryOptions} onChange={this.onCountryChange} />
+        <FormattedMessage id="filter_year" defaultMessage="Filter by release_year" />
         <Filter options={filterByYear} onChange={this.onYearChange} />
         <Sort sortOptions={sortOptions} />
         <SearchFilm searchText="" />
@@ -76,4 +82,6 @@ const mapStateToProps = (state) => ({
   movies: state.movieList,
 })
 
-export default connect(mapStateToProps, { fetchMovies, searchMovie, filterFilm })(Home)
+export default connect(mapStateToProps, {
+  fetchMovies, searchMovie, filterFilm, localeSet,
+})(Home)

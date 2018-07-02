@@ -22,3 +22,16 @@ export function fetchMoviesFail(error) {
     error,
   };
 }
+
+const LOCALE_SET = 'LOCALE_SET'
+
+export const localeSet = lang => ({
+  type: LOCALE_SET,
+  lang,
+});
+
+// export const setLocale = lang => dispatch => {
+//   console.log('action, //////')
+//   localStorage.alhubLang = lang;
+//   dispatch(localeSet(lang));
+// };

@@ -8,7 +8,6 @@ export function* filterFilm(action) {
   try {
     const { filter } = action;
     const response = yield call(filterApi, filter);
-    console.log(response, 'success')
     yield put(filterFilmSuccess(response.data.results));
   } catch (err) {
     yield put(filterFilmFailure(err));
