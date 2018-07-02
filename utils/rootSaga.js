@@ -4,7 +4,11 @@ import { watchFetchMovies } from '../app/containers/Home/saga';
 import { watchFetchMovie } from '../app/containers/MovieDetail/saga';
 import { watchSearchMovie } from '../app/containers/Search/saga';
 import { watchSortFilm } from '../app/containers/SortBy/saga'
+import { watchFilterFilm } from '../app/containers/Filter/saga'
+
 
 export default function* rootSaga() {
-  yield all([watchFetchMovies(), watchFetchMovie(), watchSearchMovie(), watchSortFilm()]);
+  yield all([
+    watchFetchMovies(), watchFetchMovie(), watchSearchMovie(), watchSortFilm(), watchFilterFilm(),
+  ]);
 }

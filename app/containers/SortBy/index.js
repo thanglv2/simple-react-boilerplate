@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { sortFilm } from './action'
 
 type Props = {
-  listOption: [],
+  sortOptions: [],
   sortFilm: () => void,
 }
 class Sort extends Component<Props> {
@@ -39,7 +39,7 @@ class Sort extends Component<Props> {
     return (
       <form>
         <select onChange={this.handleChange} value={this.state.value}>
-          {this.props.listOption.map(option =>
+          {this.props.sortOptions.map(option =>
             <option value={option.name} key={option.id}>{option.name}</option>)}
         </select>
       </form>

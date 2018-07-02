@@ -4,19 +4,24 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { searchMovie } from '../Search/actions'
+import { filterFilm } from '../Filter/action'
 import { fetchMovies } from './actions';
 import LoadingFilm from '../../components/LoadingFilm';
 import MovieList from '../../components/MovieList';
 import SearchFilm from '../Search'
 import Pagination from '../Pagination'
 import Sort from '../SortBy'
+import Filter from '../Filter'
+import { sortOptions, filterByCountryOptions, filterByYear, countryObject } from '../../../utils/dataOptions'
 
 type Props = {
   fetchMovies: () => void,
   movies: Object,
   match: Object,
   searchMovie: () => void,
+  filterFilm: () => void,
 }
+
 class Home extends React.Component<Props> {
   state = {
     pageOfItems: [],
@@ -40,30 +45,24 @@ class Home extends React.Component<Props> {
     this.setState({ pageOfItems });
   }
 
+  onCountryChange = (value) => {
+    this.props.filterFilm(countryObject[value]);
+  }
+
+  onYearChange = (value) => {
+    this.props.filterFilm(parseInt(value, 10))
+  }
+
+
   render() {
     const { items } = this.props.movies;
     const { pageOfItems } = this.state;
-    const listOption = [
-      {
-        id: 1,
-        name: 'Rating Ascending',
-      },
-      {
-        id: 2,
-        name: 'Rating Descending',
-      },
-      {
-        id: 3,
-        name: 'Release Date Ascending',
-      },
-      {
-        id: 4,
-        name: 'Release Date Descending',
-      }];
 
     return (
       <div>
-        <Sort listOption={listOption} />
+        <Filter options={filterByCountryOptions} onChange={this.onCountryChange} />
+        <Filter options={filterByYear} onChange={this.onYearChange} />
+        <Sort sortOptions={sortOptions} />
         <SearchFilm searchText="" />
         { items.length === 0 && <LoadingFilm /> }
         { items.length > 0 && <MovieList movies={pageOfItems} /> }
@@ -77,4 +76,4 @@ const mapStateToProps = (state) => ({
   movies: state.movieList,
 })
 
-export default connect(mapStateToProps, { fetchMovies, searchMovie })(Home)
+export default connect(mapStateToProps, { fetchMovies, searchMovie, filterFilm })(Home)

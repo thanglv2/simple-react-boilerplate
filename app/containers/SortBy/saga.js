@@ -8,7 +8,6 @@ export function* sortFilm(action) {
   try {
     const { sortBy } = action;
     const response = yield call(sortApi, sortBy);
-    console.log(response);
     yield put(sortFilmSuccess(response.data.results));
   } catch (err) {
     yield put(sortFilmFailure(err));
