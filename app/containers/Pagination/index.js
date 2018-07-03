@@ -2,7 +2,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Row } from 'react-bootstrap'
-import { StyledGrid } from '../../../utils/commonStyle'
 
 type Props = {
   items: Array<Object>,
@@ -108,32 +107,30 @@ class PaginationPage extends React.Component<Props> {
     });
 
     return (
-      <StyledGrid>
-        <Row>
-          <ul className="pagination">
-            <li className={liClass}>
-              <a className="page-link" role="presentation" onClick={this.handleFirstPage}>First</a>
-            </li>
-            <li className={liClass}>
-              <a className="page-link" role="presentation" onClick={this.handlePreviousPage}>Previous</a>
-            </li>
-            {pager.pages.map((page) =>
-              (<li key={page} className={pager.currentPage === page ? 'page-item active' : ''}>
-                <a className="page-link" role="presentation" onClick={() => this.setPage(page)}>
-                  {page}
-                </a>
-              </li>
-              ))
-            }
-            <li className={liClass}>
-              <a className="page-link" role="presentation" onClick={this.handleNextPage}>Next</a>
-            </li>
-            <li className={liClass}>
-              <a className="page-link" role="presentation"onClick={this.handleLastPage}>Last</a>
-            </li>
-          </ul>
-        </Row>
-      </StyledGrid>
+      <Row>
+        <ul className="pagination">
+          <li className={liClass}>
+            <a className="page-link" role="presentation" onClick={this.handleFirstPage}>First</a>
+          </li>
+          <li className={liClass}>
+            <a className="page-link" role="presentation" onClick={this.handlePreviousPage}>Previous</a>
+          </li>
+          {pager.pages.map((page) =>
+            (<li key={page} className={pager.currentPage === page ? 'page-item active' : ''}>
+              <a className="page-link" role="presentation" onClick={() => this.setPage(page)}>
+                {page}
+              </a>
+             </li>
+            ))
+          }
+          <li className={liClass}>
+            <a className="page-link" role="presentation" onClick={this.handleNextPage}>Next</a>
+          </li>
+          <li className={liClass}>
+            <a className="page-link" role="presentation"onClick={this.handleLastPage}>Last</a>
+          </li>
+        </ul>
+      </Row>
     );
   }
 }

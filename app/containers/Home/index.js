@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl'
+import { Button, Row, Col } from 'react-bootstrap'
 
 import { searchMovie } from '../Search/actions'
 import { filterFilm } from '../Filter/action'
@@ -14,6 +15,8 @@ import Pagination from '../Pagination'
 import Sort from '../SortBy'
 import Filter from '../Filter'
 import { sortOptions, filterByCountryOptions, filterByYear, countryObject } from '../../../utils/dataOptions'
+import { StyledGrid } from '../../../utils/commonStyle'
+
 
 type Props = {
   fetchMovies: () => void,
@@ -61,19 +64,31 @@ class Home extends React.Component<Props> {
     const { pageOfItems } = this.state;
 
     return (
-      <div>
-        <button onClick={() => this.props.localeSet('en')}>EN</button> |
-        <button onClick={() => this.props.localeSet('vi')}>VI</button>
-        <FormattedMessage id="filter_country" defaultMessage="Filter by country" />
-        <Filter options={filterByCountryOptions} onChange={this.onCountryChange} />
-        <FormattedMessage id="filter_year" defaultMessage="Filter by release_year" />
-        <Filter options={filterByYear} onChange={this.onYearChange} />
-        <Sort sortOptions={sortOptions} />
-        <SearchFilm searchText="" />
+      <StyledGrid>
+        <Row>
+          <Button onClick={() => this.props.localeSet('en')} bsStyle="primary">EN</Button> |
+          <Button onClick={() => this.props.localeSet('vi')} bsStyle="success">VI</Button>
+        </Row>
+        <Row>
+          <Col md={3} sm={3} xs={12}>
+            <FormattedMessage id="filter_country" defaultMessage="Filter by country" />
+            <Filter options={filterByCountryOptions} onChange={this.onCountryChange} />
+          </Col>
+          <Col md={3} sm={3} xs={12}>
+            <FormattedMessage id="filter_year" defaultMessage="Filter by release_year" />
+            <Filter options={filterByYear} onChange={this.onYearChange} />
+          </Col>
+          <Col md={3} sm={3} xs={12}>
+            <Sort sortOptions={sortOptions} />
+          </Col>
+          <Col md={3} sm={3} xs={12}>
+            <SearchFilm searchText="" />
+          </Col>
+        </Row>
         { items.length === 0 && <LoadingFilm /> }
         { items.length > 0 && <MovieList movies={pageOfItems} /> }
         <Pagination items={items} onChangePage={this.onChangePage} />
-      </div>
+      </StyledGrid>
     )
   }
 }

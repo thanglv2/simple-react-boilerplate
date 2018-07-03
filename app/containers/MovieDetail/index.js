@@ -1,13 +1,17 @@
 // @flow
 
-import React, { Component } from 'react'
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { Row } from 'react-bootstrap'
 
 import { fetchMovie } from './actions';
 import withReducer from '../../../utils/withReducer';
 import movieDetail from './reducer';
 import Poster from '../../components/Poster';
 import SearchFilm from '../Search'
+import Trailers from '../Trailers'
+import { StyledGrid } from '../../../utils/commonStyle'
+
 
 type Props = {
   movie: Object,
@@ -17,8 +21,7 @@ type Props = {
   }
 }
 
-
-class MovieDetail extends Component<Props> {
+class MovieDetail extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchMovie(this.props.match.params.id);
   }
@@ -27,10 +30,16 @@ class MovieDetail extends Component<Props> {
     const { movie } = this.props;
 
     return (
-      <div>
-        <SearchFilm />
+      <StyledGrid>
+        <Row>
+          <SearchFilm />
+        </Row>
         {movie && movie.item && movie.item.poster_path && <Poster movie={movie} />}
-      </div>
+        <Row>
+          <h3>Trailers</h3>
+          <Trailers className="abcd" id={this.props.match.params.id} />
+        </Row>
+      </StyledGrid>
     )
   }
 }

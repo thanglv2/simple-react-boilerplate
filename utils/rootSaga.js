@@ -5,10 +5,16 @@ import { watchFetchMovie } from '../app/containers/MovieDetail/saga';
 import { watchSearchMovie } from '../app/containers/Search/saga';
 import { watchSortFilm } from '../app/containers/SortBy/saga'
 import { watchFilterFilm } from '../app/containers/Filter/saga'
+import { watchFetchTrailers } from '../app/containers/Trailers/saga'
 
 
 export default function* rootSaga() {
   yield all([
-    watchFetchMovies(), watchFetchMovie(), watchSearchMovie(), watchSortFilm(), watchFilterFilm(),
+    watchFetchMovies(),
+    watchFetchMovie(),
+    watchSearchMovie(),
+    watchSortFilm(),
+    watchFilterFilm(),
+    watchFetchTrailers(),
   ]);
 }

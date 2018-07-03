@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants'
-import { StyledGrid, StyledImage } from '../../../utils/commonStyle'
+import { StyledImage } from '../../../utils/commonStyle'
 
 type Props = {
   movies: Array<Object>
@@ -20,11 +20,9 @@ const MovieList = ({ movies }: Props) => {
       </Col>));
 
   return (
-    <StyledGrid fluid={false}>
-      <Row>
-        {moviesList}
-      </Row>
-    </StyledGrid>
+    <Row>
+      {moviesList}
+    </Row>
   );
 }
 
