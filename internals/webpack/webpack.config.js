@@ -1,5 +1,7 @@
 const path = require('path')
 
+const DotenvPlugin = require('dotenv-webpack')
+
 const parentDir = path.join(__dirname, '../')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
@@ -10,6 +12,12 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [{
+          loader: 'file-loader',
+        }],
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -58,6 +66,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new DotenvPlugin({
+      path: './.env',
+      safe: false,
+    }),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'index.html',

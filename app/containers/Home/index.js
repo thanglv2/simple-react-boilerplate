@@ -4,6 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl'
 import { Button, Row, Col } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
 import { searchMovie } from '../Search/actions'
 import { filterFilm } from '../Filter/action'
@@ -19,12 +20,13 @@ import { StyledGrid } from '../../../utils/commonStyle'
 
 
 type Props = {
-  fetchMovies: () => void,
-  movies: Object,
-  match: Object,
   searchMovie: () => void,
   filterFilm: () => void,
   localeSet: () => void,
+  fetchMovies: () => void,
+  history: Object,
+  movies: Object,
+  match: Object,
 }
 
 class Home extends React.Component<Props> {
@@ -58,6 +60,10 @@ class Home extends React.Component<Props> {
     this.props.filterFilm(parseInt(value, 10))
   }
 
+  hanleLogin = () => {
+    this.props.history.push('/login')
+  }
+
 
   render() {
     const { items } = this.props.movies;
@@ -66,8 +72,10 @@ class Home extends React.Component<Props> {
     return (
       <StyledGrid>
         <Row>
-          <Button onClick={() => this.props.localeSet('en')} bsStyle="primary">EN</Button> |
-          <Button onClick={() => this.props.localeSet('vi')} bsStyle="success">VI</Button>
+          <Button onClick={() => this.props.localeSet('en')} bsStyle="primary">EN</Button>&nbsp;
+          <Button onClick={() => this.props.localeSet('vi')} bsStyle="success">VI</Button>&nbsp;
+          { localStorage.getItem('userId') ? <Button bsStyle="info">Vagabond</Button>
+            : <Button onClick={this.hanleLogin} bsStyle="info">Login</Button> }
         </Row>
         <Row>
           <Col md={3} sm={3} xs={12}>
@@ -97,6 +105,6 @@ const mapStateToProps = (state) => ({
   movies: state.movieList,
 })
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   fetchMovies, searchMovie, filterFilm, localeSet,
-})(Home)
+})(Home))

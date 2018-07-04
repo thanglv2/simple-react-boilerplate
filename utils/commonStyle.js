@@ -8,4 +8,10 @@ export const StyledImage = styled(Image)`
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 100%;
+  
+  &:hover {
+    .meta {
+      visibility: visible;
+    }
+  }
 `
