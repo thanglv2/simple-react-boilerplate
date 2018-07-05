@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react';
 import styled from 'styled-components'
 import { Glyphicon } from 'react-bootstrap'
 import axios from 'axios'
@@ -20,25 +22,43 @@ const StyledMeta = styled.div`
   justify-content: space-between;
 `
 
-const StyledHeart = styled(Glyphicon)`
+const StyledBookMark = styled(Glyphicon)`
   font-size: 1.1em;
-  color: ${props => (props.heartcolor === 'true' ? 'yellow' : 'black')};
+  color: ${props => (props.heartcolor === 'true' ? '#fa3a3a' : '')};
 `
 
-export default class BookMark extends React.Component {
+type Props = {
+  filmId: number,
+}
+
+export default class BookMark extends React.Component<Props> {
   state = {
     bookMark: false,
   }
+
   componentDidUpdate() {
     const { filmId } = this.props;
+    const userId = localStorage.getItem('userId');
 
-    console.log('didMount')
     if (this.state.bookMark) {
-      axios.post('http://localhost:3000/users', {
+      axios.post('http://localhost:3000/films', {
         filmId,
+        userId,
+        bookMark: true,
+      })
+    }
+
+    if (!this.state.bookMark && filmId) {
+      axios.get('http://localhost:3000/films').then(({ data }) => {
+        const { id } = data.find(item => item.filmId === filmId)
+
+        axios.patch(`http://localhost:3000/films/${id}`, {
+          bookMark: false,
+        })
       })
     }
   }
+
   handleClick = (e) => {
     e.preventDefault();
     this.setState({ bookMark: !this.state.bookMark })
@@ -47,7 +67,7 @@ export default class BookMark extends React.Component {
   render() {
     return (
       <StyledMeta className="meta">
-        <StyledHeart onClick={this.handleClick} glyph="heart" heartcolor={this.state.bookMark.toString()} />
+        <StyledBookMark onClick={this.handleClick} glyph="bookmark" heartcolor={this.state.bookMark.toString()} />
       </StyledMeta>
     )
   }

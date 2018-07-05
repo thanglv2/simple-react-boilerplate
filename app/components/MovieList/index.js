@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react';
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants'

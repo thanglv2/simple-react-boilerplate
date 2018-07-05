@@ -3,16 +3,38 @@
     {
       "name": "Vagabond Hoang",
       "userID": "1659902557441696",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531039103&hash=AeSBYcn3TDAQJhYy",
+      "email": "hoangtuananhnamdinh@gmail.com",
       "id": 1
     },
     {
       "name": "Vagabond Hoang",
       "userID": "1659902557441696",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531039754&hash=AeQbvzhDg6wGzFsK",
+      "email": "hoangtuananhnamdinh@gmail.com",
       "id": 2
     },
     {
-      "filmId": 351286,
+      "name": "Vagabond Hoang",
+      "userID": "1659902557441696",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040154&hash=AeQdDK4y-U1Yhum5",
+      "email": "hoangtuananhnamdinh@gmail.com",
       "id": 3
+    },
+    {
+      "name": "Vagabond Hoang",
+      "userID": "1659902557441696",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040208&hash=AeQcnLwUefN7_ml6",
+      "email": "hoangtuananhnamdinh@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "Vagabond Hoang",
+      "userID": "1659902557441696",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040245&hash=AeR7i4K9dYt1XCl9",
+      "email": "hoangtuananhnamdinh@gmail.com",
+      "id": 5
     }
-  ]
+  ],
+  "films": []
 }
