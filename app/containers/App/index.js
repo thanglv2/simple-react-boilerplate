@@ -10,6 +10,7 @@ import ViewProfile from '../../components/ViewProfile'
 import MovieDetail from '../MovieDetail';
 import messages from '../../../utils/messages'
 import WatchList from '../../components/WatchList'
+import EditProfile from '../../components/EditProfile'
 
 type Props = {
   lang: string,
@@ -24,6 +25,7 @@ const App = ({ lang }: Props) => (
         <Route path="/u/:username" exact component={ViewProfile} />
         <Route path="/search/:searchText" component={Home} />
         <Route path="/u/:username/watchlist" component={WatchList} />
+        <Route path="/settings/profile" component={EditProfile} />
       </Switch>
     </BrowserRouter>
   </IntlProvider>

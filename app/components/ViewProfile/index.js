@@ -29,6 +29,7 @@ class ViewProfile extends React.Component<Props> {
       picture: '',
     },
   }
+
   componentDidMount() {
     if (this.props.userInfo === ViewProfile.defaultProps.userInfo) {
       axios.get('http://localhost:3000/users')
@@ -44,14 +45,22 @@ class ViewProfile extends React.Component<Props> {
         })
     }
   }
+
   redirectHome = () => {
     this.props.history.push('/')
   }
+
   handleWatchList = () => {
     this.props.history.push(`/u/${this.props.userInfo.name}/watchlist`);
   }
+
+  editProfile = () => {
+    this.props.history.push('/settings/profile')
+  }
+
   render() {
     const { name, email, picture } = this.props.userInfo;
+
     return (
       <StyledGrid>
         <Row>
@@ -65,6 +74,7 @@ class ViewProfile extends React.Component<Props> {
           <Col md={4} sm={6} xs={12}>
             <Button onClick={this.redirectHome} bsStyle="success">Home</Button>&nbsp;
             <Button onClick={this.handleWatchList} bsStyle="info">WatchList</Button>&nbsp;
+            <Button onClick={this.editProfile} bsStyle="warning">Edit Profile</Button>&nbsp;
           </Col>
         </Row>
       </StyledGrid>
