@@ -1,4 +1,4 @@
-import { takeLatest, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 
 import { FETCH_MOVIE } from './constants';
 import { fetchMovieDetail } from './service';
@@ -16,5 +16,5 @@ export function* fetchMovie(action) {
 }
 
 export function* watchFetchMovie() {
-  yield takeLatest(FETCH_MOVIE, fetchMovie)
+  yield takeEvery(FETCH_MOVIE, fetchMovie)
 }

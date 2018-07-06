@@ -3,38 +3,53 @@
     {
       "name": "Vagabond Hoang",
       "userID": "1659902557441696",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531039103&hash=AeSBYcn3TDAQJhYy",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531119673&hash=AeRzAPAWxgGhC-Pe",
       "email": "hoangtuananhnamdinh@gmail.com",
+      "id": 1
+    }
+  ],
+  "films": [
+    {
+      "filmId": 351286,
+      "userId": "1659902557441696",
+      "bookMark": false,
       "id": 1
     },
     {
-      "name": "Vagabond Hoang",
-      "userID": "1659902557441696",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531039754&hash=AeQbvzhDg6wGzFsK",
-      "email": "hoangtuananhnamdinh@gmail.com",
+      "filmId": 333339,
+      "userId": "1659902557441696",
+      "bookMark": true,
       "id": 2
     },
     {
-      "name": "Vagabond Hoang",
-      "userID": "1659902557441696",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040154&hash=AeQdDK4y-U1Yhum5",
-      "email": "hoangtuananhnamdinh@gmail.com",
+      "filmId": 284053,
+      "userId": "1659902557441696",
+      "bookMark": true,
       "id": 3
     },
     {
-      "name": "Vagabond Hoang",
-      "userID": "1659902557441696",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040208&hash=AeQcnLwUefN7_ml6",
-      "email": "hoangtuananhnamdinh@gmail.com",
+      "filmId": 333339,
+      "userId": "1659902557441696",
+      "bookMark": true,
       "id": 4
     },
     {
-      "name": "Vagabond Hoang",
-      "userID": "1659902557441696",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1531040245&hash=AeR7i4K9dYt1XCl9",
-      "email": "hoangtuananhnamdinh@gmail.com",
+      "filmId": 284053,
+      "userId": "1659902557441696",
+      "bookMark": true,
       "id": 5
+    },
+    {
+      "filmId": 333339,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 6
+    },
+    {
+      "filmId": 284053,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 7
     }
-  ],
-  "films": []
+  ]
 }

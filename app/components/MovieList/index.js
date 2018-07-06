@@ -7,6 +7,7 @@ import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants'
 import { StyledImage } from '../../../utils/commonStyle'
 import styled from 'styled-components'
 import BookMark from '../BookMark';
+import axios from 'axios'
 
 type Props = {
   movies: Array<Object>
@@ -18,7 +19,6 @@ const Wrraper = styled.div`
     }
   }
 `
-
 const MovieList = ({ movies }: Props) => {
   const moviesList = movies.filter(movie => movie.poster_path !== null)
     .map(movie => (

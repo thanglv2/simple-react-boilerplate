@@ -36,6 +36,15 @@ export default class BookMark extends React.Component<Props> {
     bookMark: false,
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3000/films').then(({ data }) => {
+      const bookMarkedFilm = data.filter(item => item.bookMark === true)
+      const bookMarkedFilmId = bookMarkedFilm.map(film => film.filmId)
+      if (bookMarkedFilmId.includes(this.props.filmId)) {
+        this.setState({ bookMark: true })
+      }
+    })
+  }
   componentDidUpdate() {
     const { filmId } = this.props;
     const userId = localStorage.getItem('userId');

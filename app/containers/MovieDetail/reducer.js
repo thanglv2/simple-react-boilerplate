@@ -16,13 +16,13 @@ const movieDetail = (state = initialState, action) => {
     case FETCH_MOVIE_SUCCESS:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         item: action.data,
       }
     case FETCH_MOVIE_FAILURE:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         error: action.error,
       }
     default:

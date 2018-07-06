@@ -30,12 +30,10 @@ class ViewProfile extends React.Component<Props> {
     },
   }
   componentDidMount() {
-    if (typeof this.props.userInfo === 'undefined') {
+    if (this.props.userInfo === ViewProfile.defaultProps.userInfo) {
       axios.get('http://localhost:3000/users')
         .then(({ data }) => {
-          console.log(data)
           const { name, email, picture } = data[0];
-          console.log(name, 'name')
           const payload = {
             name,
             email,
@@ -50,7 +48,6 @@ class ViewProfile extends React.Component<Props> {
     this.props.history.push('/')
   }
   handleWatchList = () => {
-    console.log('handleWatchList')
     this.props.history.push(`/u/${this.props.userInfo.name}/watchlist`);
   }
   render() {

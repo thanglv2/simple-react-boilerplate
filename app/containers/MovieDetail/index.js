@@ -45,7 +45,7 @@ class MovieDetail extends React.Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  movie: state.movieDetail ? state.movieDetail : undefined,
+  movie: state.movieDetail,
 })
 
 export default withReducer('movieDetail', movieDetail)(connect(mapStateToProps, { fetchMovie })(MovieDetail))
