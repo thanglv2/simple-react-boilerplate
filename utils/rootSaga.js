@@ -6,6 +6,8 @@ import { watchSearchMovie } from '../app/containers/Search/saga';
 import { watchSortFilm } from '../app/containers/SortBy/saga'
 import { watchFilterFilm } from '../app/containers/Filter/saga'
 import { watchFetchTrailers } from '../app/containers/Trailers/saga'
+import { watchFetchCasts } from '../app/containers/Casts/saga'
+import { watchFetchRecommendations } from '../app/containers/Recommendations/saga'
 
 
 export default function* rootSaga() {
@@ -16,5 +18,7 @@ export default function* rootSaga() {
     watchSortFilm(),
     watchFilterFilm(),
     watchFetchTrailers(),
+    watchFetchCasts(),
+    watchFetchRecommendations(),
   ]);
 }

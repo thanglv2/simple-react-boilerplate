@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Row } from 'react-bootstrap'
+import { Row, Button } from 'react-bootstrap'
 
 import { fetchMovie } from './actions';
 import withReducer from '../../../utils/withReducer';
@@ -11,6 +11,8 @@ import Poster from '../../components/Poster';
 import SearchFilm from '../Search'
 import Trailers from '../Trailers'
 import { StyledGrid } from '../../../utils/commonStyle'
+import Casts from '../Casts';
+import Recommendations from '../Recommendations';
 
 
 type Props = {
@@ -18,12 +20,17 @@ type Props = {
   fetchMovie: () => void,
   match: {
     params: Object
-  }
+  },
+  history: Object,
 }
 
 class MovieDetail extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchMovie(this.props.match.params.id);
+  }
+
+  redirectHome = () => {
+    this.props.history.push('/')
   }
 
   render() {
@@ -33,11 +40,20 @@ class MovieDetail extends React.Component<Props> {
       <StyledGrid>
         <Row>
           <SearchFilm />
+          <Button onClick={this.redirectHome} bsStyle="success">Home</Button>&nbsp;
         </Row>
         {movie && movie.item && movie.item.poster_path && <Poster movie={movie} />}
         <Row>
           <h3>Trailers</h3>
-          <Trailers className="abcd" id={this.props.match.params.id} />
+          <Trailers id={this.props.match.params.id} />
+        </Row>
+        <Row>
+          <h3>Casts</h3>
+          <Casts id={this.props.match.params.id} />
+        </Row>
+        <Row>
+          <h3>Recommendations</h3>
+          <Recommendations id={this.props.match.params.id} />
         </Row>
       </StyledGrid>
     )

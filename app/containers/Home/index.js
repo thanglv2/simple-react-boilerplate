@@ -2,29 +2,19 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl'
-import { Button, Row, Col } from 'react-bootstrap'
-import { withRouter } from 'react-router-dom'
 
 import { searchMovie } from '../Search/actions'
-import { filterFilm } from '../Filter/action'
-import { fetchMovies, localeSet } from './actions';
+import { fetchMovies } from './actions';
 import LoadingFilm from '../../components/LoadingFilm';
 import MovieList from '../../components/MovieList';
-import SearchFilm from '../Search'
 import Pagination from '../Pagination'
-import Sort from '../SortBy'
-import Filter from '../Filter'
-import { sortOptions, filterByCountryOptions, filterByYear, countryObject } from '../../../utils/dataOptions'
 import { StyledGrid } from '../../../utils/commonStyle'
+import Header from '../Header'
 
 
 type Props = {
-  searchMovie: () => void,
-  filterFilm: () => void,
-  localeSet: () => void,
   fetchMovies: () => void,
-  history: Object,
+  searchMovie: () => void,
   movies: Object,
   match: Object,
 }
@@ -52,47 +42,13 @@ class Home extends React.Component<Props> {
     this.setState({ pageOfItems });
   }
 
-  onCountryChange = (value) => {
-    this.props.filterFilm(countryObject[value]);
-  }
-
-  onYearChange = (value) => {
-    this.props.filterFilm(parseInt(value, 10))
-  }
-
-  hanleLogin = () => {
-    this.props.history.push('/login')
-  }
-
-
   render() {
     const { items } = this.props.movies;
     const { pageOfItems } = this.state;
 
     return (
       <StyledGrid>
-        <Row>
-          <Button onClick={() => this.props.localeSet('en')} bsStyle="primary">EN</Button>&nbsp;
-          <Button onClick={() => this.props.localeSet('vi')} bsStyle="success">VI</Button>&nbsp;
-          { localStorage.getItem('userId') ? <Button bsStyle="info">Vagabond</Button>
-            : <Button onClick={this.hanleLogin} bsStyle="info">Login</Button> }
-        </Row>
-        <Row>
-          <Col md={3} sm={3} xs={12}>
-            <FormattedMessage id="filter_country" defaultMessage="Filter by country" />
-            <Filter options={filterByCountryOptions} onChange={this.onCountryChange} />
-          </Col>
-          <Col md={3} sm={3} xs={12}>
-            <FormattedMessage id="filter_year" defaultMessage="Filter by release_year" />
-            <Filter options={filterByYear} onChange={this.onYearChange} />
-          </Col>
-          <Col md={3} sm={3} xs={12}>
-            <Sort sortOptions={sortOptions} />
-          </Col>
-          <Col md={3} sm={3} xs={12}>
-            <SearchFilm searchText="" />
-          </Col>
-        </Row>
+        <Header />
         { items.length === 0 && <LoadingFilm /> }
         { items.length > 0 && <MovieList movies={pageOfItems} /> }
         <Pagination items={items} onChangePage={this.onChangePage} />
@@ -105,6 +61,6 @@ const mapStateToProps = (state) => ({
   movies: state.movieList,
 })
 
-export default withRouter(connect(mapStateToProps, {
-  fetchMovies, searchMovie, filterFilm, localeSet,
-})(Home))
+export default connect(mapStateToProps, {
+  fetchMovies, searchMovie,
+})(Home)

@@ -2,9 +2,11 @@ import * as React from 'react';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+
 import { StyledGrid } from '../../../utils/commonStyle'
 import { saveUser } from '../../containers/Login/action'
+import Header from '../../containers/Header'
 
 const StyledDiv = styled.div`
   width: '400px';
@@ -46,23 +48,12 @@ class ViewProfile extends React.Component<Props> {
     }
   }
 
-  redirectHome = () => {
-    this.props.history.push('/')
-  }
-
-  handleWatchList = () => {
-    this.props.history.push(`/u/${this.props.userInfo.name}/watchlist`);
-  }
-
-  editProfile = () => {
-    this.props.history.push('/settings/profile')
-  }
-
   render() {
     const { name, email, picture } = this.props.userInfo;
 
     return (
       <StyledGrid>
+        <Header />
         <Row>
           <Col md={4} sm={6} xs={12}>
             <StyledDiv>
@@ -70,11 +61,6 @@ class ViewProfile extends React.Component<Props> {
               <h2>Welcome {name}</h2>
           Email: {email}
             </StyledDiv>
-          </Col>
-          <Col md={4} sm={6} xs={12}>
-            <Button onClick={this.redirectHome} bsStyle="success">Home</Button>&nbsp;
-            <Button onClick={this.handleWatchList} bsStyle="info">WatchList</Button>&nbsp;
-            <Button onClick={this.editProfile} bsStyle="warning">Edit Profile</Button>&nbsp;
           </Col>
         </Row>
       </StyledGrid>

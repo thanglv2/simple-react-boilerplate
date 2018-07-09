@@ -6,6 +6,7 @@ import { Row, Col } from 'react-bootstrap'
 import { fetchMovies } from '../../containers/Home/actions';
 import { URL_IMG, IMG_SIZE_LARGE } from '../../../utils/constants'
 import { StyledGrid, StyledImage } from '../../../utils/commonStyle'
+import Header from '../../containers/Header'
 
 type Props = {
   fetchMovies: () => void,
@@ -35,6 +36,7 @@ class WatchList extends React.Component<Props> {
 
     return (
       <StyledGrid>
+        <Header />
         <h1>WatchList</h1>
         {bookMarkedMovies.length > 0 && bookMarkedMovies.map(bookMarkedMovie =>
           (

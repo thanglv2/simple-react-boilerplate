@@ -71,6 +71,21 @@ class EditProfile extends React.Component<Props> {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  fileSelectedHandler = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      this.setState({
+        picture: reader.result,
+      })
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
   render() {
     const { name, email, picture } = this.state;
 
@@ -78,11 +93,26 @@ class EditProfile extends React.Component<Props> {
       <StyledGrid>
         <h1>Edit Profile</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>Name:</label>
-          <input type="text" name="name" onChange={this.handleChange} value={name} />
-          <label>Email:</label>
-          <input type="email" name="email" onChange={this.handleChange} value={email} />
-          <input type="submit" value="Submit" />
+          <div className="form-group">
+            <label htmlFor="name">
+              Name:
+              <input type="text" name="name" onChange={this.handleChange} value={name} className="form-control" />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">
+              Email:
+              <input type="email" name="email" onChange={this.handleChange} value={email} className="form-control" />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="file">
+              Avatar:
+              <img src={picture} alt={name} />
+              <input type="file" name="file" onChange={this.fileSelectedHandler} className="form-control" />
+            </label>
+          </div>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </StyledGrid>
     )

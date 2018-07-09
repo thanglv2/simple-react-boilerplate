@@ -43,6 +43,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+        use: [
+          {
+            loader: 'url-loader',
+          },
+        ],
+      },
+      {
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],

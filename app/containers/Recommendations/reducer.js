@@ -1,8 +1,8 @@
 import {
-  FETCH_TRAILERS,
-  FETCH_TRAILERS_SUCCESS,
-  FETCH_TRAILERS_FAILURE,
-} from './constants'
+  FETCH_RECOMMENDATIONS,
+  FETCH_RECOMMENDATIONS_SUCCESS,
+  FETCH_RECOMMENDATIONS_FAILURE,
+} from './constant'
 
 const initialState = {
   isFetching: false,
@@ -10,20 +10,20 @@ const initialState = {
   error: {},
 }
 
-const trailerReducer = (state = initialState, action) => {
+const recommendationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_TRAILERS:
+    case FETCH_RECOMMENDATIONS:
       return {
         ...state,
         isFetching: true,
       }
-    case FETCH_TRAILERS_SUCCESS:
+    case FETCH_RECOMMENDATIONS_SUCCESS:
       return {
         ...state,
         isFetching: false,
         items: action.data,
       }
-    case FETCH_TRAILERS_FAILURE:
+    case FETCH_RECOMMENDATIONS_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -34,4 +34,4 @@ const trailerReducer = (state = initialState, action) => {
   }
 }
 
-export default trailerReducer
+export default recommendationReducer

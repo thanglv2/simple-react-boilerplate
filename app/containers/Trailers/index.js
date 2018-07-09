@@ -1,9 +1,8 @@
-
 import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchTrailers } from './actions';
-import trailerList from './reducer'
+import trailerReducer from './reducer'
 import withReducer from '../../../utils/withReducer';
 import TrailerList from '../../components/TrailerList';
 import styled from 'styled-components';
@@ -34,7 +33,7 @@ class Trailers extends React.Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  trailers: state.trailerList,
+  trailers: state.trailerReducer,
 })
 
-export default withReducer('trailerList', trailerList)(connect(mapStateToProps, { fetchTrailers })(Trailers))
+export default withReducer('trailerReducer', trailerReducer)(connect(mapStateToProps, { fetchTrailers })(Trailers))

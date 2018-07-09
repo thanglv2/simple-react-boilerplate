@@ -25,13 +25,10 @@ export function fetchMoviesFail(error) {
 
 const LOCALE_SET = 'LOCALE_SET'
 
-export const localeSet = lang => ({
-  type: LOCALE_SET,
-  lang,
-});
-
-// export const setLocale = lang => dispatch => {
-//   console.log('action, //////')
-//   localStorage.alhubLang = lang;
-//   dispatch(localeSet(lang));
-// };
+export const localeSet = lang => {
+  localStorage.setItem('lang', lang);
+  return {
+    type: LOCALE_SET,
+    lang,
+  }
+}

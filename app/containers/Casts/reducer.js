@@ -1,8 +1,4 @@
-import {
-  FETCH_TRAILERS,
-  FETCH_TRAILERS_SUCCESS,
-  FETCH_TRAILERS_FAILURE,
-} from './constants'
+import { FETCH_CASTS, FETCH_CASTS_SUCCESS, FETCH_CASTS_FAILURE } from './constant'
 
 const initialState = {
   isFetching: false,
@@ -10,20 +6,21 @@ const initialState = {
   error: {},
 }
 
-const trailerReducer = (state = initialState, action) => {
+const castsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_TRAILERS:
+    case FETCH_CASTS:
       return {
         ...state,
         isFetching: true,
       }
-    case FETCH_TRAILERS_SUCCESS:
+
+    case FETCH_CASTS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
         items: action.data,
+        isFetching: false,
       }
-    case FETCH_TRAILERS_FAILURE:
+    case FETCH_CASTS_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -34,4 +31,4 @@ const trailerReducer = (state = initialState, action) => {
   }
 }
 
-export default trailerReducer
+export default castsReducer
