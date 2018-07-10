@@ -8,7 +8,9 @@ import { watchFilterFilm } from '../app/containers/Filter/saga'
 import { watchFetchTrailers } from '../app/containers/Trailers/saga'
 import { watchFetchCasts } from '../app/containers/Casts/saga'
 import { watchFetchRecommendations } from '../app/containers/Recommendations/saga'
-
+import { watchFetchFilms } from '../app/components/MovieList/saga'
+import { watchFetchUser } from '../app/components/ViewProfile/saga'
+import { watchSaveUserDb } from '../app/containers/Login/saga'
 
 export default function* rootSaga() {
   yield all([
@@ -20,5 +22,8 @@ export default function* rootSaga() {
     watchFetchTrailers(),
     watchFetchCasts(),
     watchFetchRecommendations(),
+    watchFetchFilms(),
+    watchFetchUser(),
+    watchSaveUserDb(),
   ]);
 }

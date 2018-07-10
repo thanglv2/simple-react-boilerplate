@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieList /> should return div tag 1`] = `
+<Row
+  bsClass="row"
+  componentClass="div"
+>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    key="1"
+    md={3}
+    sm={4}
+    xs={6}
+  >
+    <Link
+      replace={false}
+      to="/movie/1"
+    >
+      <styled.div>
+        <Styled(Image)
+          responsive={true}
+          src="https://image.tmdb.org/t/p/w342/jkfdjfd"
+        />
+      </styled.div>
+    </Link>
+  </Col>
+</Row>
+`;

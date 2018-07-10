@@ -4,7 +4,9 @@
   "description": "react boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --config jest.config.json --json --outputFile=jest-results.json",
+    "test:watch": "jest --config jest.config.json --watch",
+    "test:coverage": "jest --config jest.config.json --coverage --watch",
     "start": "./node_modules/.bin/webpack-dev-server --config ./internals/webpack/webpack.config.js --mode=development",
     "build": "webpack --config ./internals/webpack/webpack.config.js --mode=production",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
@@ -17,7 +19,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-jest": "^23.0.1",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.1.1",
     "classnames": "^2.2.6",
@@ -28,7 +29,6 @@
     "font-awesome": "^4.7.0",
     "fs": "^0.0.1-security",
     "graceful-fs": "^4.1.11",
-    "jest": "^23.0.1",
     "json-server": "^0.14.0",
     "lodash": "^4.17.10",
     "lowdb": "^1.0.0",
@@ -44,6 +44,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-mock-store": "^1.5.3",
     "redux-saga": "^0.16.0",
     "style-loader": "^0.21.0",
     "styled-components": "^3.3.3",
@@ -55,6 +56,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -68,6 +70,7 @@
     "coveralls": "^3.0.1",
     "dotenv": "^6.0.0",
     "dotenv-webpack": "^1.5.7",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -78,6 +81,9 @@
     "flow-bin": "^0.75.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.0.1",
+    "jest-localstorage-mock": "^2.2.0",
+    "jest-transform-stub": "^1.0.0",
     "webpack-cli": "^2.1.3"
   },
   "babel": {
@@ -86,12 +92,5 @@
       "react",
       "stage-0"
     ]
-  },
-  "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "app"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/jest-config.js"
   }
 }

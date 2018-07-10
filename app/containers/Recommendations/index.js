@@ -11,7 +11,7 @@ type Props = {
   fetchRecommendations: () => void,
 }
 
-class Recommendations extends React.Component<Props> {
+export class Recommendations extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchRecommendations(this.props.id);
   }
@@ -27,7 +27,7 @@ class Recommendations extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   recommendations: state.recommendationReducer,
 })
 

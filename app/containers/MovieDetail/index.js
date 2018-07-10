@@ -24,7 +24,7 @@ type Props = {
   history: Object,
 }
 
-class MovieDetail extends React.Component<Props> {
+export class MovieDetail extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchMovie(this.props.match.params.id);
   }
@@ -60,7 +60,7 @@ class MovieDetail extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   movie: state.movieDetail,
 })
 

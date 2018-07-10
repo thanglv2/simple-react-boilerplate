@@ -4,7 +4,7 @@ const initialState = {
   lang: 'en',
 }
 
-export default function locale(state = initialState, action = {}) {
+export default function locale(state = initialState, action) {
   switch (action.type) {
     case LOCALE_SET:
       return { lang: action.lang };
