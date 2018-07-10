@@ -4,15 +4,19 @@
 
 import { combineReducers } from 'redux'
 
-import { movieList } from 'containers/Home/reducer'
+import { movieList } from './containers/Home/reducer'
 import locale from '../reducers/locale'
-import userReducer from './containers/Login/reducer'
+import { userDbReducer } from './containers/Login/reducer'
+import fetchReducer from './components/ViewProfile/reducer'
+import { filmReducer } from './components/MovieList/reducer'
 
 const createReducer = asyncReducers =>
   combineReducers({
     movieList,
     locale,
-    userReducer,
+    userDbReducer,
+    fetchReducer,
+    filmReducer,
     ...asyncReducers,
   })
 

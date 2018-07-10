@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   overflow: scroll;
 `
 
-class Trailers extends React.Component<Props> {
+export class Trailers extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchTrailers(this.props.id);
   }
@@ -32,7 +32,7 @@ class Trailers extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   trailers: state.trailerReducer,
 })
 

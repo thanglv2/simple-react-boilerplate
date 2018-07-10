@@ -8,7 +8,6 @@ export function* fetchMovie(action) {
   try {
     const { id } = action;
     const response = yield call(fetchMovieDetail, id);
-
     yield put(fetchMovieSuccess(response.data));
   } catch (err) {
     yield put(fetchMovieFail(err));

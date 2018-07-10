@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RecommendationList /> should return div tag 1`] = `
+<styled.div>
+  <div
+    key="1"
+  >
+    <img
+      alt="title"
+      src="https://image.tmdb.org/t/p/w250_and_h141_facejkfdjfd"
+    />
+    <p>
+      title
+    </p>
+  </div>
+</styled.div>
+`;

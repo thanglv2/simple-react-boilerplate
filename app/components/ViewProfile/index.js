@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import { Row, Col } from 'react-bootstrap'
 
 import { StyledGrid } from '../../../utils/commonStyle'
-import { saveUser } from '../../containers/Login/action'
+import { saveUserDb } from '../../containers/Login/action'
 import Header from '../../containers/Header'
+import { fetchUser } from './action'
 
 const StyledDiv = styled.div`
   width: '400px';
@@ -15,15 +15,13 @@ const StyledDiv = styled.div`
   padding: '20px';
 `
 type Props = {
-  picture: string,
-  name: string,
-  email: string,
   userInfo: Object,
-  history: Object,
-  saveUser: () => void,
+  saveUserDb: () => void,
+  fetchUser: () => void,
+  getUserReducer: Object,
 }
 
-class ViewProfile extends React.Component<Props> {
+export class ViewProfile extends React.Component<Props> {
   static defaultProps = {
     userInfo: {
       name: '',
@@ -33,23 +31,32 @@ class ViewProfile extends React.Component<Props> {
   }
 
   componentDidMount() {
-    if (this.props.userInfo === ViewProfile.defaultProps.userInfo) {
-      axios.get('http://localhost:3000/users')
-        .then(({ data }) => {
-          const { name, email, picture } = data[0];
-          const payload = {
-            name,
-            email,
-            picture,
-          }
+    this.props.fetchUser()
+    console.log(this.props.userInfo.items, 'this.props.userInfo.items')
+    if (JSON.stringify(this.props.userInfo.items) === JSON.stringify(ViewProfile.defaultProps.userInfo)) {
+      this.props.fetchUser()
+    }
+  }
 
-          this.props.saveUser(payload)
-        })
+  componentDidUpdate() {
+    const { items } = this.props.fetchReducer
+    console.log('items')
+    console.log(this.props.fetchReducer.items, 'this.props.fetchReducer')
+    if (items) {
+      const { name, email, picture } = items;
+      const payload = {
+        name,
+        email,
+        picture,
+      }
+      if (JSON.stringify(this.props.userInfo.items) === JSON.stringify(ViewProfile.defaultProps.userInfo)) {
+        this.props.saveUserDb(payload)
+      }
     }
   }
 
   render() {
-    const { name, email, picture } = this.props.userInfo;
+    const { name, email, picture } = this.props.userInfo.items;
 
     return (
       <StyledGrid>
@@ -68,9 +75,10 @@ class ViewProfile extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
-  userInfo: state.userReducer.payload,
+export const mapStateToProps = state => ({
+  userInfo: state.userDbReducer,
+  fetchReducer: state.fetchReducer,
 })
 
 
-export default connect(mapStateToProps, { saveUser })(ViewProfile)
+export default connect(mapStateToProps, { saveUserDb, fetchUser })(ViewProfile)

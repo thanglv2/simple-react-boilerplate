@@ -10,7 +10,7 @@ import { movieList } from '../Home/reducer'
 import withReducer from '../../../utils/withReducer'
 import { searchMovie } from './actions'
 import { StyledImage } from '../../../utils/commonStyle'
-import logo from '../../../internals/images/logo_square.svg'
+import logo from '../../../public/images/logo_square.svg'
 import { URL_IMG, IMG_SIZE_XSMALL } from '../../../utils/constants'
 import { searchMovieApi } from './service';
 

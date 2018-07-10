@@ -3,15 +3,14 @@
 import * as React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'
-import axios from 'axios'
-import { saveUser } from './action'
+import { saveUserDb } from './action'
 
 type Props = {
   history: Object,
-  saveUser: () => void,
+  saveUserDb: () => void,
 }
 
-class Facebook extends React.Component<Props> {
+export class Facebook extends React.Component<Props> {
   state = {
     isLoggedIn: false,
     name: '',
@@ -36,21 +35,11 @@ class Facebook extends React.Component<Props> {
       picture, name, userID, isLoggedIn, email,
     } = this.state;
 
-    const payload = {
-      picture,
-      name,
-      email,
-    }
-
     if (isLoggedIn) {
       localStorage.setItem('userId', userID);
       this.props.history.push(`/u/${name}`);
-      this.props.saveUser(payload)
-      axios.post('http://localhost:3000/users', {
-        name,
-        userID,
-        picture,
-        email,
+      this.props.saveUserDb({
+        name, userID, picture, email,
       })
     }
 
@@ -66,4 +55,4 @@ class Facebook extends React.Component<Props> {
   }
 }
 
-export default connect(null, { saveUser })(Facebook)
+export default connect(null, { saveUserDb })(Facebook)
