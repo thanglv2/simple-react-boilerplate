@@ -1,14 +1,14 @@
-import axios from 'axios'
-import { URL_DETAIL } from '../../MovieDetail/constants'
-import { API_KEY } from '../../../../utils/constants';
-import { URL_VIDEO } from '../constants'
+import mockAxios from 'axios';
 import { fetchTrailerList } from '../service'
 
-describe('fetchTrailerList', () => {
-  it('should return response api', () => {
+describe('fetchTrailerList()', () => {
+  it('should return response api', async () => {
     let id;
-    const urlTrailers = `${URL_DETAIL}${id}${URL_VIDEO}?api_key=${API_KEY}`
-
-    expect(fetchTrailerList(id)).toEqual(axios.get(urlTrailers))
+    mockAxios.get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: {},
+      }));
+    await fetchTrailerList(id)
+    expect(mockAxios.get).toHaveBeenCalledTimes(1);
   })
 })

@@ -12,13 +12,11 @@ type Props = {
 
 class PaginationPage extends React.Component<Props> {
   state = {
-    pager: {},
-  }
-
-  componentWillMount() {
-    if (this.props.items && this.props.items.length) {
-      this.setPage(this.props.initialPage);
-    }
+    pager: {
+      totalPages: 1,
+      currentPage: 1,
+      pages: [1, 2],
+    },
   }
 
   componentDidUpdate(prevProps) {
@@ -116,11 +114,12 @@ class PaginationPage extends React.Component<Props> {
             <a className="page-link" role="presentation" onClick={this.handlePreviousPage}>Previous</a>
           </li>
           {pager.pages.map((page) =>
-            (<li key={page} className={pager.currentPage === page ? 'page-item active' : ''}>
-              <a className="page-link" role="presentation" onClick={() => this.setPage(page)}>
-                {page}
-              </a>
-             </li>
+            (
+              <li key={page} className={pager.currentPage === page ? 'page-item active' : ''}>
+                <a className="page-link" role="presentation" onClick={() => this.setPage(page)}>
+                  {page}
+                </a>
+              </li>
             ))
           }
           <li className={liClass}>

@@ -1,12 +1,14 @@
-import axios from 'axios'
-import { URL } from '../constant'
-import { API_KEY } from '../../../../utils/constants';
+import mockAxios from 'axios';
 import { recommendationsApi } from '../service'
 
 describe('recommendationsApi()', () => {
-  let id;
-  const baseUrl = `${URL}${id}/recommendations?api_key=${API_KEY}`
-  it('should return response api', () => {
-    expect(recommendationsApi(id)).toEqual(axios.get(baseUrl))
+  it('should return response api', async () => {
+    let searchText;
+    mockAxios.get.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: {},
+      }));
+    await recommendationsApi(searchText)
+    expect(mockAxios.get).toHaveBeenCalledTimes(1);
   })
 })

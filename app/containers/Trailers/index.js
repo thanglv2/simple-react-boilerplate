@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-
+import { compose } from 'redux';
 import { fetchTrailers } from './actions';
 import trailerReducer from './reducer'
 import withReducer from '../../../utils/withReducer';
@@ -36,4 +36,7 @@ export const mapStateToProps = state => ({
   trailers: state.trailerReducer,
 })
 
-export default withReducer('trailerReducer', trailerReducer)(connect(mapStateToProps, { fetchTrailers })(Trailers))
+export default compose(
+  withReducer('trailerReducer', trailerReducer),
+  connect(mapStateToProps, { fetchTrailers }),
+)(Trailers)

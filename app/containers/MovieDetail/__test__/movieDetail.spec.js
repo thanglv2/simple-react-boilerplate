@@ -1,66 +1,24 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { MovieDetail, mapStateToProps } from '../index';
+import toJson from 'enzyme-to-json';
+
+import MovieDetail from '../index';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<MovieDetail />', () => {
-  let instance;
-  let component;
-  let mockProps;
-
-  const setUpComponent = (overrides = {}) => {
-    mockProps = {
-      movie: {
-        item: {
-          poster_path: 'http',
-        },
+describe('MovieDetail component', () => {
+  const mockProps = {
+    match: {
+      params: {
+        id: 1,
       },
-      fetchMovie: jest.fn(),
-      match: {
-        params: {
-          id: 1,
-        },
-      },
-      history: {
-        push: jest.fn(),
-      },
-      ...overrides,
-    }
+    },
+  };
 
-    component = shallow(<MovieDetail {...mockProps} />)
-    instance = component.instance()
-  }
+  const component = shallow(<MovieDetail {...mockProps} />);
 
-  beforeEach(() => {
-    setUpComponent();
+  it('should match snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
   });
-
-  describe('componentDidMount()', () => {
-    it('should call fetchMovie', () => {
-      jest.spyOn(instance, 'componentDidMount');
-      expect(instance.props.fetchMovie).toHaveBeenCalledWith(instance.props.match.params.id);
-    })
-  })
-
-  describe('redirectHome', () => {
-    it('should redirect to home page', () => {
-      instance.redirectHome()
-      expect(instance.props.history.push).toHaveBeenCalledWith('/');
-    })
-  })
-
-  describe('mapStateToProps', () => {
-    it('should return an object', () => {
-      const state = {
-        movieDetail: {},
-      }
-      const expectedResult = {
-        movie: state.movieDetail,
-      };
-
-      expect(mapStateToProps(state)).toEqual(expectedResult);
-    })
-  })
-})
+});

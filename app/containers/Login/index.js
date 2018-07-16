@@ -3,13 +3,20 @@
 import * as React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'
+import { Grid } from 'react-bootstrap'
+import styled from 'styled-components'
 import { saveUserDb } from './action'
 
 type Props = {
   history: Object,
   saveUserDb: () => void,
 }
-
+const StyledButtonLogin = styled.div`
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 export class Facebook extends React.Component<Props> {
   state = {
     isLoggedIn: false,
@@ -44,13 +51,17 @@ export class Facebook extends React.Component<Props> {
     }
 
     return (
-      <FacebookLogin
-        appId={process.env.FACEBOOk_APP_ID}
-        autoLoad
-        fields="name,email,picture"
-        callback={this.responseFacebook}
-        reauthenticate
-      />
+      <Grid>
+        <StyledButtonLogin>
+          <FacebookLogin
+            appId={process.env.FACEBOOk_APP_ID}
+            autoLoad
+            fields="name,email,picture"
+            callback={this.responseFacebook}
+            reauthenticate
+          />
+        </StyledButtonLogin>
+      </Grid>
     )
   }
 }

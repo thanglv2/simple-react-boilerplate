@@ -12,3 +12,4 @@ export const SORT_FILM = 'SORT_FILM';
 export const SORT_FILM_SUCCESS = 'SORT_FILM_SUCCESS'
 export const SORT_FILM_FAILURE = 'SORT_FILM_FAILURE'
 
+export const LOCALE_SET = 'LOCALE_SET'

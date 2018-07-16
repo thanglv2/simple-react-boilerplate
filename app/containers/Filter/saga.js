@@ -1,6 +1,6 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 
-import filterApi from './service'
+import { filterApi } from './service'
 import { FILTER_FILM } from './constants';
 import { filterFilmSuccess, filterFilmFailure } from './action';
 

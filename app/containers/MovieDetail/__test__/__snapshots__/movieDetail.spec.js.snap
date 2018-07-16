@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetail component should match snapshot 1`] = `
+<Styled(Grid)>
+  <withRouter(Connect(Header)) />
+  <Extended
+    id={1}
+  />
+  <Row
+    bsClass="row"
+    componentClass="div"
+  >
+    <h3>
+      Trailers
+    </h3>
+    <Extended
+      id={1}
+    />
+  </Row>
+  <Row
+    bsClass="row"
+    componentClass="div"
+  >
+    <h3>
+      Casts
+    </h3>
+    <Extended
+      id={1}
+    />
+  </Row>
+  <Row
+    bsClass="row"
+    componentClass="div"
+  >
+    <h3>
+      Recommendations
+    </h3>
+    <Extended
+      id={1}
+    />
+  </Row>
+</Styled(Grid)>
+`;

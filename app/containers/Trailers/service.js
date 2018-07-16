@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { URL_DETAIL } from '../MovieDetail/constants'
+import { URL_DETAIL } from '../../components/Poster/constants'
 import { API_KEY } from '../../../utils/constants';
 import { URL_VIDEO } from './constants'
 

@@ -1,67 +1,45 @@
 // @flow
 
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Row, Button } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
-import { fetchMovie } from './actions';
-import withReducer from '../../../utils/withReducer';
-import movieDetail from './reducer';
-import Poster from '../../components/Poster';
-import SearchFilm from '../Search'
-import Trailers from '../Trailers'
 import { StyledGrid } from '../../../utils/commonStyle'
+import Poster from '../../components/Poster';
+import Trailers from '../Trailers'
 import Casts from '../Casts';
 import Recommendations from '../Recommendations';
-
+import Header from '../Header'
 
 type Props = {
-  movie: Object,
-  fetchMovie: () => void,
   match: {
     params: Object
   },
-  history: Object,
 }
 
-export class MovieDetail extends React.Component<Props> {
-  componentDidMount() {
-    this.props.fetchMovie(this.props.match.params.id);
-  }
-
-  redirectHome = () => {
-    this.props.history.push('/')
-  }
-
+class MovieDetail extends React.Component<Props> {
   render() {
-    const { movie } = this.props;
+    const { id } = this.props.match.params;
 
     return (
       <StyledGrid>
-        <Row>
-          <SearchFilm />
-          <Button onClick={this.redirectHome} bsStyle="success">Home</Button>&nbsp;
-        </Row>
-        {movie && movie.item && movie.item.poster_path && <Poster movie={movie} />}
+        <Header />
+        <Poster id={id} />
         <Row>
           <h3>Trailers</h3>
-          <Trailers id={this.props.match.params.id} />
+          <Trailers id={id} />
         </Row>
         <Row>
           <h3>Casts</h3>
-          <Casts id={this.props.match.params.id} />
+          <Casts id={id} />
         </Row>
         <Row>
           <h3>Recommendations</h3>
-          <Recommendations id={this.props.match.params.id} />
+          <Recommendations id={id} />
         </Row>
       </StyledGrid>
     )
   }
 }
 
-export const mapStateToProps = state => ({
-  movie: state.movieDetail,
-})
 
-export default withReducer('movieDetail', movieDetail)(connect(mapStateToProps, { fetchMovie })(MovieDetail))
+export default MovieDetail

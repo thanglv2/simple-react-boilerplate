@@ -12,7 +12,7 @@ type Props = {
   fetchCasts: () => void,
 }
 
-class Casts extends React.Component<Props> {
+export class Casts extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchCasts(this.props.id);
   }
@@ -28,7 +28,7 @@ class Casts extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   casts: state.castsReducer,
 })
 

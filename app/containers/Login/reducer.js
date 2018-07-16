@@ -2,7 +2,7 @@ import { SAVE_USER_DB, SAVE_USER_DB_SUCCESS, SAVE_USER_DB_FAIL } from './constan
 
 const init = {
   isFetching: false,
-  items: [],
+  user: {},
   error: {},
 }
 
@@ -17,7 +17,7 @@ export function userDbReducer(state = init, action) {
       return {
         ...state,
         isFetching: false,
-        items: action.data,
+        user: action.data,
       }
     case SAVE_USER_DB_FAIL:
       return {

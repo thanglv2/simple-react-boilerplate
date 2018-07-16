@@ -1,74 +1,67 @@
 import * as React from 'react';
 import { StyledGrid } from '../../../utils/commonStyle'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { saveUser } from '../../containers/Login/action'
+import { fetchUser } from '../ViewProfile/action'
+import { updateUser } from './action'
+import Header from '../../containers/Header'
 
 type Props = {
-  saveUser: () => void,
-  picture: string,
-  name: string,
-  email: string,
-  userInfo: Object,
+  fetchUser: () => void,
+  updateUser: () => void,
+  fetchReducer: {
+    user: {
+      name: String,
+      email: string,
+      picture: string,
+    }
+  },
 }
 
-class EditProfile extends React.Component<Props> {
+export class EditProfile extends React.Component<Props> {
   static defaultProps = {
     userInfo: {
-      name: '',
-      email: '',
-      picture: '',
+      user: {},
     },
   }
-
   state = {
-    name: this.props.userInfo ? this.props.userInfo.name : '',
-    email: this.props.userInfo ? this.props.userInfo.email : '',
-    picture: this.props.userInfo ? this.props.userInfo.picture : '',
+    name: '',
+    email: '',
+    picture: '',
+    userId: localStorage.getItem('userId'),
   }
 
   componentDidMount() {
-    if (this.props.userInfo === EditProfile.defaultProps.userInfo) {
-      axios.get('http://localhost:3000/users')
-        .then(({ data }) => {
-          const { name, email, picture } = data[0];
-          const payload = {
-            name,
-            email,
-            picture,
-          }
+    this.props.fetchUser();
+  }
 
-          this.props.saveUser(payload)
-          this.setState({
-            name,
-            email,
-            picture,
-          })
-        })
+  componentDidUpdate(prevProps) {
+    if (this.props.fetchReducer.user.name !== prevProps.fetchReducer.user.name) {
+      const { name, email, picture } = this.props.fetchReducer.user;
+      this.setPriviousValue(name, email, picture)
     }
+  }
+
+  setPriviousValue = (name = '', email = '', picture = '') => {
+    this.setState({ name, email, picture })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, picture } = this.state;
-    const payload = {
+    const {
+      name, email, picture, userId,
+    } = this.state;
+
+    const data = {
       name,
       email,
       picture,
+      userId,
     }
-
-    this.props.saveUser(payload)
-    axios.get('http://localhost:3000/users').then(({ data }) => {
-      axios.put(`http://localhost:3000/users/${data[0].id}`, {
-        name,
-        picture,
-        email,
-      })
-    });
+    this.props.updateUser(data)
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   fileSelectedHandler = (event) => {
@@ -91,25 +84,43 @@ class EditProfile extends React.Component<Props> {
 
     return (
       <StyledGrid>
+        <Header />
         <h1>Edit Profile</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">
               Name:
-              <input type="text" name="name" onChange={this.handleChange} value={name} className="form-control" />
+              <input
+                type="text"
+                name="name"
+                onChange={this.handleChange}
+                className="form-control"
+                value={name}
+              />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="email">
               Email:
-              <input type="email" name="email" onChange={this.handleChange} value={email} className="form-control" />
+              <input
+                type="email"
+                name="email"
+                onChange={this.handleChange}
+                className="form-control"
+                value={email}
+              />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="file">
               Avatar:
               <img src={picture} alt={name} />
-              <input type="file" name="file" onChange={this.fileSelectedHandler} className="form-control" />
+              <input
+                type="file"
+                name="file"
+                onChange={this.fileSelectedHandler}
+                className="form-control"
+              />
             </label>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
@@ -119,8 +130,8 @@ class EditProfile extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
-  userInfo: state.userReducer.payload,
+export const mapStateToProps = state => ({
+  fetchReducer: state.fetchReducer,
 })
 
-export default connect(mapStateToProps, { saveUser })(EditProfile)
+export default connect(mapStateToProps, { fetchUser, updateUser })(EditProfile)

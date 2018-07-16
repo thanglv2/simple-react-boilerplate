@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyList component should ... 1`] = `
+<Row
+  bsClass="row"
+  componentClass="div"
+>
+  <h2>
+    No watchList
+  </h2>
+</Row>
+`;

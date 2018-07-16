@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add enzyme enzyme-adapter-react-16 enzyme-to-json jest-localstorage-mock jest-transform-stub -D
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add test:coverage -u
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,12 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/hoang.tuan.anh/Desktop/simple-react-boilerplate/package.json: Unexpected token } in JSON at position 2884
-      at JSON.parse (<anonymous>)
-      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:1130:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:109:13
+  Error: test:coverage: Invalid protocol: test:
+      at Request.module.exports.Request.init (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:134947:31)
+      at new Request (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:134617:8)
+      at request (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:131616:10)
+      at RequestManager.execute (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65708:15)
+      at RequestManager.shiftQueue (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65735:10)
+      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65486:13
+      at new Promise (<anonymous>)
+      at new F (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:23451:28)
+      at RequestManager.request (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:65484:19)
+      at NpmRegistry.request (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:31153:32)
 
 npm manifest: 
   {
@@ -43,7 +48,6 @@ npm manifest:
     "license": "ISC",
     "dependencies": {
       "axios": "^0.18.0",
-      "babel-jest": "^23.0.1",
       "babel-preset-env": "^1.7.0",
       "bootstrap": "^4.1.1",
       "classnames": "^2.2.6",
@@ -54,7 +58,6 @@ npm manifest:
       "font-awesome": "^4.7.0",
       "fs": "^0.0.1-security",
       "graceful-fs": "^4.1.11",
-      "jest": "^23.0.1",
       "json-server": "^0.14.0",
       "lodash": "^4.17.10",
       "lowdb": "^1.0.0",
@@ -70,6 +73,7 @@ npm manifest:
       "react-redux": "^5.0.7",
       "react-router-dom": "^4.3.1",
       "redux": "^4.0.0",
+      "redux-mock-store": "^1.5.3",
       "redux-saga": "^0.16.0",
       "style-loader": "^0.21.0",
       "styled-components": "^3.3.3",
@@ -81,6 +85,7 @@ npm manifest:
       "babel-cli": "^6.26.0",
       "babel-core": "^6.26.3",
       "babel-eslint": "^8.2.3",
+      "babel-jest": "^23.0.1",
       "babel-loader": "^7.1.4",
       "babel-plugin-transform-async-to-generator": "^6.24.1",
       "babel-plugin-transform-class-properties": "^6.24.1",
@@ -94,6 +99,7 @@ npm manifest:
       "coveralls": "^3.0.1",
       "dotenv": "^6.0.0",
       "dotenv-webpack": "^1.5.7",
+      "enzyme-to-json": "^3.3.4",
       "eslint": "^4.19.1",
       "eslint-config-airbnb": "^16.1.0",
       "eslint-config-airbnb-base": "^12.1.0",
@@ -104,6 +110,9 @@ npm manifest:
       "flow-bin": "^0.75.0",
       "html-loader": "^0.5.5",
       "html-webpack-plugin": "^3.2.0",
+      "jest": "^23.0.1",
+      "jest-localstorage-mock": "^2.2.0",
+      "jest-transform-stub": "^1.0.0",
       "webpack-cli": "^2.1.3"
     },
     "babel": {
@@ -112,7 +121,7 @@ npm manifest:
         "react",
         "stage-0"
       ]
-    },
+    }
   }
 
 yarn manifest: 
@@ -3009,6 +3018,12 @@ Lockfile:
       object.assign "^4.0.4"
       prop-types "^15.6.0"
   
+  enzyme-to-json@^3.3.4:
+    version "3.3.4"
+    resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.3.4.tgz#67c6040e931182f183418af2eb9f4323258aa77f"
+    dependencies:
+      lodash "^4.17.4"
+  
   enzyme@^3.3.0:
     version "3.3.0"
     resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.3.0.tgz#0971abd167f2d4bf3f5bd508229e1c4b6dc50479"
@@ -5028,6 +5043,10 @@ Lockfile:
     dependencies:
       pretty-format "^23.0.1"
   
+  jest-localstorage-mock@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/jest-localstorage-mock/-/jest-localstorage-mock-2.2.0.tgz#ce9a9de01dfdde2ad8aa08adf73acc7e5cc394cf"
+  
   jest-matcher-utils@^23.0.1:
     version "23.0.1"
     resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-23.0.1.tgz#0c6c0daedf9833c2a7f36236069efecb4c3f6e5f"
@@ -5127,6 +5146,10 @@ Lockfile:
       mkdirp "^0.5.1"
       natural-compare "^1.4.0"
       pretty-format "^23.0.1"
+  
+  jest-transform-stub@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/jest-transform-stub/-/jest-transform-stub-1.0.0.tgz#e4e941454f31a8bbc4db96b31f46a08b294372b1"
   
   jest-util@^23.1.0:
     version "23.1.0"
@@ -5563,6 +5586,10 @@ Lockfile:
   lodash.flattendeep@^4.4.0:
     version "4.4.0"
     resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
+  
+  lodash.isplainobject@^4.0.6:
+    version "4.0.6"
+    resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
   
   lodash.memoize@^4.1.2:
     version "4.1.2"
@@ -7499,6 +7526,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
     dependencies:
       balanced-match "^0.4.2"
+  
+  redux-mock-store@^1.5.3:
+    version "1.5.3"
+    resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.3.tgz#1f10528949b7ce8056c2532624f7cafa98576c6d"
+    dependencies:
+      lodash.isplainobject "^4.0.6"
   
   redux-saga@^0.16.0:
     version "0.16.0"

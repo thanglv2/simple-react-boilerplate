@@ -1,14 +1,9 @@
 // @flow
 import * as React from 'react';
 import Autosuggest from 'react-autosuggest'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 import { withRouter } from 'react-router-dom';
 
 import theme from './search.css'
-import { movieList } from '../Home/reducer'
-import withReducer from '../../../utils/withReducer'
-import { searchMovie } from './actions'
 import { StyledImage } from '../../../utils/commonStyle'
 import logo from '../../../public/images/logo_square.svg'
 import { URL_IMG, IMG_SIZE_XSMALL } from '../../../utils/constants'
@@ -16,17 +11,17 @@ import { searchMovieApi } from './service';
 
 type Props = {
   history: Object,
-  movies: Object,
 }
-class SearchFilm extends React.Component<Props> {
+
+export class SearchFilm extends React.Component<Props> {
   state = {
     value: '',
     suggestions: [],
   }
 
-  onChange = (event, { newValue }) => {
+  onChange = ({ target: { value } }) => {
     this.setState({
-      value: newValue,
+      value,
     });
   };
 
@@ -91,6 +86,7 @@ class SearchFilm extends React.Component<Props> {
       value,
       onKeyPress: this.handleKeyDown,
       onChange: this.onChange,
+      className: 'form-control',
     };
 
     return (
@@ -107,12 +103,5 @@ class SearchFilm extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
-  movies: state.movieList,
-});
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, { searchMovie }),
-  withReducer('movieList', movieList),
-)(SearchFilm)
+export default withRouter(SearchFilm)

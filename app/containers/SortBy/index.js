@@ -38,10 +38,12 @@ class Sort extends Component<Props> {
   render() {
     return (
       <form>
-        <select onChange={this.handleChange} value={this.state.value}>
-          {this.props.sortOptions.map(option =>
-            <option value={option.name} key={option.id}>{option.name}</option>)}
-        </select>
+        <div className="form-group">
+          <select onChange={this.handleChange} value={this.state.value} className="form-control">
+            {this.props.sortOptions.map(option =>
+              <option value={option.name} key={option.id}>{option.name}</option>)}
+          </select>
+        </div>
       </form>
     )
   }

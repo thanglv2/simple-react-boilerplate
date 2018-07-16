@@ -2,7 +2,7 @@ import { FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_FAIL } from './constant'
 
 const initialState = {
   isFetching: false,
-  items: [],
+  user: {},
   error: {},
 }
 
@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        items: action.data,
+        user: action.data,
       }
     case FETCH_USER_FAIL:
       return {

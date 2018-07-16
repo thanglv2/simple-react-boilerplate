@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { searchMovie } from '../Search/actions'
 import { fetchMovies } from './actions';
 import LoadingFilm from '../../components/LoadingFilm';
-import MovieList from '../../components/MovieList';
+import MovieList from '../MovieList';
 import Pagination from '../Pagination'
 import { StyledGrid } from '../../../utils/commonStyle'
 import Header from '../Header'
@@ -16,10 +16,14 @@ type Props = {
   fetchMovies: () => void,
   searchMovie: () => void,
   movies: Object,
-  match: Object,
+  match: {
+    params: {
+      searchText: String,
+    }
+  },
 }
 
-class Home extends React.Component<Props> {
+export class Home extends React.Component<Props> {
   state = {
     pageOfItems: [],
   }
@@ -27,8 +31,6 @@ class Home extends React.Component<Props> {
   componentDidMount() {
     if (!this.props.match.params.searchText) {
       this.props.fetchMovies();
-    } else {
-      this.props.searchMovie(this.props.match.params.searchText)
     }
   }
 
@@ -57,7 +59,7 @@ class Home extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movieList,
 })
 

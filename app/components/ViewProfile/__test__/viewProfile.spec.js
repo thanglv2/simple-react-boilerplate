@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { MemoryRouter } from 'react-router-dom';
 import { ViewProfile, mapStateToProps } from '../index';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -12,19 +13,14 @@ describe('<ViewProfile />', () => {
 
   const setUpComponent = (overrides = {}) => {
     mockProps = {
-      userInfo: {
-        name: '',
-        email: '',
-        picture: '',
-      },
+      userInfo: { user: {} },
+      fetchReducer: { user: {} },
       fetchUser: jest.fn(),
-      saveUser: jest.fn(),
-      getUserReducer: { items: [] },
       ...overrides,
     }
 
-    component = shallow(<ViewProfile {...mockProps} />)
-    instance = component.instance()
+    component = shallow(<MemoryRouter><ViewProfile {...mockProps} /></MemoryRouter>)
+    instance = component.dive().dive().instance()
   }
 
   beforeEach(() => {
@@ -36,38 +32,23 @@ describe('<ViewProfile />', () => {
       instance.componentDidMount();
       expect(instance.props.fetchUser).toHaveBeenCalled();
     })
-  })
 
-  describe('componentDidUpdate', () => {
-    it('should call userDbReducer', () => {
-      setUpComponent({ getUserReducer: { items: [{ name: 'name', email: 'email', picture: 'picture' }] } })
-      instance.componentDidUpdate();
-      expect(instance.props.userDbReducer).toHaveBeenCalledWith({ name: 'name', email: 'email', picture: 'picture' })
-    })
-    it('should not call userDbReducer', () => {
-      const payload = {
-        name: 'name',
-        email: 'email',
-        picture: 'picture',
-      };
-      setUpComponent({
-        userInfo: payload,
-      });
-      expect(instance.props.userDbReducer).not.toHaveBeenCalledWith(payload);
+    it('should not call fetchUser', () => {
+      setUpComponent({ userInfo: { user: { name: 'name', email: 'email' } } })
+      instance.componentDidMount();
+      expect(instance.props.fetchUser).not.toHaveBeenCalled();
     })
   })
 
   describe('mapStateToProps', () => {
     it('should return an object', () => {
       const state = {
-        userReducer: {
-          payload: {},
-        },
-        getUserReducer: {},
+        userDbReducer: {},
+        fetchReducer: {},
       }
       const expectedResult = {
-        userInfo: state.userReducer.payload,
-        getUserReducer: state.getUserReducer,
+        userInfo: state.userDbReducer,
+        fetchReducer: state.fetchReducer,
       };
 
       expect(mapStateToProps(state)).toEqual(expectedResult);

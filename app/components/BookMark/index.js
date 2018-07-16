@@ -21,7 +21,7 @@ const StyledMeta = styled.div`
   justify-content: space-between;
 `
 
-const StyledBookMark = styled(Glyphicon)`
+export const StyledBookMark = styled(Glyphicon)`
   font-size: 1.1em;
   color: ${props => (props.heartcolor === 'true' ? '#fa3a3a' : '')};
 `
@@ -30,61 +30,22 @@ type Props = {
   filmId: number,
   films: Object,
   checkBookMark: boolean,
-  updateBookMark: () => void,
+  handleBookMark: () => void,
 }
 
 class BookMark extends React.Component<Props> {
-  // state = {
-  //   bookMark: this.props.checkBookMark,
-  // }
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   if (prevState.bookMark !== nextProps.checkBookMark) {
-  //     return {
-  //       bookMark: nextProps.checkBookMark,
-  //     }
-  //   }
-  //   return null
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   // const { filmId } = this.props;
-  //   // const userId = localStorage.getItem('userId');
-  //   // if (this.state.bookMark && !prevState.bookMark) {
-  //   //   this.props.saveFilm({ filmId, userId, bookMark: true })
-  //   // }
-
-  //   // if (!this.state.bookMark && prevState.bookMark && filmId) {
-  //   //   const { items } = this.props.films;
-  //   //   this.props.updateFilm(items.id, { bookMark: false })
-  //   // }
-  //   // if (!this.state.bookMark && filmId) {
-  //   //   axios.get('http://localhost:3000/films').then(({ data }) => {
-  //   //     const { id } = data.find(item => item.filmId === filmId)
-
-  //   //     axios.patch(`http://localhost:3000/films/${id}`, {
-  //   //       bookMark: false,
-  //   //     })
-  //   //   })
-  //   // }
-  // }
-
   handleClick = (e) => {
     e.preventDefault();
-    this.props.updateBookMark(this.props.filmId);
+    this.props.handleBookMark(this.props.filmId);
   }
 
   render() {
     return (
       <StyledMeta className="meta">
-        <StyledBookMark onClick={this.handleClick} glyph="bookmark" heartcolor={this.props.checkBookMark.toString()} />
+        <StyledBookMark onClick={this.handleClick} glyph="bookmark" heartcolor={`${this.props.checkBookMark}`} />
       </StyledMeta>
     )
   }
 }
-
-// const mapStateToProps = state => ({
-//   films: state.filmsReducer,
-// })
 
 export default BookMark

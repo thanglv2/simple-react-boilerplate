@@ -16,11 +16,13 @@ class Filter extends Component<Props> {
     const { options } = this.props
     return (
       <form>
-        <select onChange={this.onChange}>
-          {options.map(option => (
-            <option value={option.name} key={option.id}>{option.name}</option>
-          ))}
-        </select>
+        <div className="form-group">
+          <select onChange={this.onChange} className="form-control">
+            {options.map(option => (
+              <option value={option.name} key={option.id}>{option.name}</option>
+            ))}
+          </select>
+        </div>
       </form>
     )
   }

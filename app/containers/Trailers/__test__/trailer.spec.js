@@ -28,13 +28,6 @@ describe('<Trailers />', () => {
     setUpComponent();
   });
 
-  describe('componentDidMount()', () => {
-    it('should call fetchTrailers', () => {
-      jest.spyOn(instance, 'componentDidMount');
-      expect(instance.props.fetchTrailers).toHaveBeenCalledWith(instance.props.id);
-    })
-  })
-
   describe('mapStateToProps', () => {
     it('should return an object', () => {
       const state = {

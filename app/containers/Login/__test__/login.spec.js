@@ -12,8 +12,10 @@ describe('<Facebook />', () => {
 
   const setUpComponent = (overrides = {}) => {
     mockProps = {
-      history: {},
-      saveUser: jest.fn(),
+      history: {
+        push: jest.fn(),
+      },
+      saveUserDb: jest.fn(),
       ...overrides,
     }
 
@@ -25,25 +27,25 @@ describe('<Facebook />', () => {
     setUpComponent();
   });
 
-  describe('componentDidMount()', () => {
-    it('should call fetchRecommendations', () => {
-      instance.componentDidMount();
-      expect(instance.props.fetchRecommendations).toHaveBeenCalledWith(instance.props.id);
-    })
-  })
-
-  describe('mapStateToProps', () => {
-    it('should return an object', () => {
-      const state = {
-        recommendationReducer: {
-          items: [],
+  describe('responseFacebook', () => {
+    it('should call setState', () => {
+      let name;
+      let email;
+      let userId;
+      const picture = {
+        data: {
+          url: 'http',
         },
       }
-      const expectedResult = {
-        recommendations: state.recommendationReducer,
+      const response = {
+        name,
+        email,
+        picture,
+        userId,
       };
-
-      expect(mapStateToProps(state)).toEqual(expectedResult);
+      instance.responseFacebook(response);
+      component.update();
+      expect(instance.state.isLoggedIn).toEqual(true)
     })
   })
 })

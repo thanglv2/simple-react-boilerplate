@@ -9,13 +9,13 @@ import Login from '../Login';
 import ViewProfile from '../../components/ViewProfile'
 import MovieDetail from '../MovieDetail';
 import messages from '../../../utils/messages'
-import WatchList from '../../components/WatchList'
+import WatchList from '../WatchList'
 import EditProfile from '../../components/EditProfile'
 
 type Props = {
   lang: string,
 }
-const App = ({ lang }: Props) => (
+export const App = ({ lang }: Props) => (
   <IntlProvider locale={lang} messages={messages[lang]}>
     <BrowserRouter>
       <Switch>
@@ -31,7 +31,7 @@ const App = ({ lang }: Props) => (
   </IntlProvider>
 );
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   lang: state.locale.lang,
 })
 

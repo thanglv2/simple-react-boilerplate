@@ -2,6 +2,7 @@ import {
   FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
+  LOCALE_SET,
 } from './constants';
 
 export function fetchMovies() {
@@ -23,7 +24,6 @@ export function fetchMoviesFail(error) {
   };
 }
 
-const LOCALE_SET = 'LOCALE_SET'
 
 export const localeSet = lang => {
   localStorage.setItem('lang', lang);
