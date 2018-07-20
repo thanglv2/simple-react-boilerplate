@@ -1,8 +1,11 @@
 const path = require('path')
 
+const DotenvPlugin = require('dotenv-webpack')
+
 const parentDir = path.join(__dirname, '../')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const express = require('express')
 
 module.exports = {
   entry: [
@@ -10,6 +13,12 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [{
+          loader: 'file-loader',
+        }],
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -24,9 +33,27 @@ module.exports = {
         },
       },
       {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '/images/[name]_[hash:7].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
-        include: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
     ],
@@ -40,6 +67,9 @@ module.exports = {
     historyApiFallback: true,
     port: 9000,
     hot: true,
+    setup(app) {
+      app.use('/images', express.static(path.join(__dirname, '../../public/images')))
+    },
   },
   resolve: {
     modules: ['app', 'node_modules'],
@@ -48,6 +78,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new DotenvPlugin({
+      path: './.env',
+      safe: false,
+    }),
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'index.html',

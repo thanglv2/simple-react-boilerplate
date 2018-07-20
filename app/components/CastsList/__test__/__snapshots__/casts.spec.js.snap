@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CastsList component should ... 1`] = `
+<styled.div>
+  <Styled(Card)
+    key="1"
+  >
+    <styled.img
+      alt="fdo"
+      className="img-fluid"
+      src="https://image.tmdb.org/t/p/w138_and_h175_facehfdkjfd"
+      top={true}
+    />
+    <CardBody
+      tag="div"
+    >
+      <CardText
+        tag="p"
+      >
+        fdjfkd
+      </CardText>
+      <CardText
+        tag="p"
+      >
+        fdo
+      </CardText>
+    </CardBody>
+  </Styled(Card)>
+</styled.div>
+`;

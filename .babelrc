@@ -1,0 +1,4 @@
+{
+  "presets": ["react", "es2015", "stage-0", "flow"],
+  "plugins": ["babel-plugin-transform-class-properties", "transform-async-to-generator", "transform-runtime"]
+}

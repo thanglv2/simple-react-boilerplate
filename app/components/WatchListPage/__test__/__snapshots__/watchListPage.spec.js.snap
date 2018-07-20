@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WatchListPage component should match to snapshot 1`] = `
+Array [
+  <Styled(Row)
+    key="123"
+  />,
+]
+`;

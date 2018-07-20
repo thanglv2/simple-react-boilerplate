@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetail component should match snapshot 1`] = `
+<React.Fragment>
+  <withRouter(Connect(Header)) />
+  <Styled(Container)>
+    <Extended
+      id={1}
+    />
+    <Extended
+      id={1}
+    />
+    <Extended
+      id={1}
+    />
+    <Extended
+      id={1}
+    />
+  </Styled(Container)>
+  <Footer />
+</React.Fragment>
+`;

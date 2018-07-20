@@ -1,43 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import Input from 'components/Input'
-import { setUsername } from './actions'
+// @flow
 
-export class App extends React.Component {
-  render() {
-    const { username, onChangeUsername } = this.props
-    return (
-      <div className="d-flex flex-column mt-4">
-        <p className="d-flex justify-content-center">
-          This is simple react app! <br />
-          Please type your name:
-        </p>
-        <div className="d-flex justify-content-center mb-4">
-          <Input value={username} onChange={onChangeUsername} />
-        </div>
-        <div className="d-flex justify-content-center">
-          <button>
-            <Link to="/learning">Go to Learning Page</Link>
-          </button>
-        </div>
-      </div>
-    )
+import React from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { IntlProvider } from 'react-intl'
+import Home from '../Home';
+import ViewProfile from '../../components/ViewProfile'
+import MovieDetail from '../MovieDetail';
+import messages from '../../../utils/messages'
+import WatchList from '../WatchList'
+import EditProfile from '../../components/EditProfile'
+
+export function Fragment(props) {
+  return props.children;
+}
+
+type Props = {
+  lang: string,
+}
+
+export const isLoggedIn = () => {
+  const userId = localStorage.getItem('userId');
+  if (userId) {
+    return true;
   }
-}
+  return false;
+};
 
-const mapStateToProps = ({ global }) => ({
-  username: global.username,
+export const App = ({ lang }: Props) => (
+  <IntlProvider locale={lang} messages={messages[lang]} textComponent={Fragment}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={() => <Home />} />
+        <Route path="/search/:searchText" component={() => <Home />} />
+        <Route path="/movie/:id" component={MovieDetail} />
+        <Route path="/u/:username" exact render={() => (isLoggedIn() ? <ViewProfile /> : <Redirect to="/" />)} />
+        <Route path="/u/:username/watchlist" render={() => (isLoggedIn() ? <WatchList /> : <Redirect to="/" />)} />
+        <Route path="/settings/profile" render={() => (isLoggedIn() ? <EditProfile /> : <Redirect to="/" />)} />
+      </Switch>
+    </BrowserRouter>
+  </IntlProvider>
+);
+
+export const mapStateToProps = state => ({
+  lang: state.locale.lang,
 })
 
-export const mapDispatchToProps = (dispatch) => ({
-  onChangeUsername: (value) => dispatch(setUsername(value)),
-})
-
-App.propTypes = {
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App);

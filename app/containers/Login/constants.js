@@ -1,0 +1,5 @@
+export const SAVE_USER = 'SAVE_USER'
+export const SAVE_USER_DB = 'SAVE_USER_DB'
+export const SAVE_USER_DB_SUCCESS = 'SAVE_USER_DB_SUCCESS'
+export const SAVE_USER_DB_FAIL = 'SAVE_USER_DB_FAIL'
+export const URL_SAVE_USER = 'http://localhost:3000/user'

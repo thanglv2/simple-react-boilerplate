@@ -1,0 +1,58 @@
+{
+  "user": {
+    "name": "Hoang Tuân Anh",
+    "userID": "1659902557441696",
+    "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1659902557441696&height=50&width=50&ext=1536458111&hash=AeSa1DJaXiiZGX2B",
+    "email": "hoangtuananhnamdinh@gmail.com"
+  },
+  "films": [
+    {
+      "filmId": 351286,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 1
+    },
+    {
+      "filmId": 363088,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 2
+    },
+    {
+      "filmId": 284053,
+      "userId": "1659902557441696",
+      "bookMark": false,
+      "id": 3
+    },
+    {
+      "filmId": 353081,
+      "userId": "1659902557441696",
+      "bookMark": false,
+      "id": 4
+    },
+    {
+      "filmId": 954,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 5
+    },
+    {
+      "filmId": 177677,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 6
+    },
+    {
+      "filmId": 299536,
+      "userId": "1659902557441696",
+      "bookMark": true,
+      "id": 7
+    },
+    {
+      "filmId": 333339,
+      "userId": "1659902557441696",
+      "bookMark": false,
+      "id": 8
+    }
+  ]
+}
