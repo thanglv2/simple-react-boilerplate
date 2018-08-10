@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditProfile component should match to SnapShot 1`] = `
+<React.Fragment>
+  <withRouter(Connect(Header)) />
+  <Styled(Container)>
+    <Connect(UserForm) />
+  </Styled(Container)>
+  <Footer />
+</React.Fragment>
+`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyList component should ... 1`] = `
+<React.Fragment>
+  <styled.div>
+    <styled.iframe
+      allowFullScreen={true}
+      className="giphy-embed"
+      frameBorder="0"
+      src="https://giphy.com/embed/jAYUbVXgESSti"
+    />
+  </styled.div>
+</React.Fragment>
+`;

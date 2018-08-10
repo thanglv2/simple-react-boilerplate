@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TrailerList /> should return div tag 1`] = `
+<styled.div>
+  <iframe
+    allowFullScreen={true}
+    key="key"
+    src="http://youtube.com/embed/key"
+    title="key"
+  />
+</styled.div>
+`;
